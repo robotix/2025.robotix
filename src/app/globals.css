@@ -1,1 +1,99 @@
 @import "tailwindcss";
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* APK Protocol Font Family */
+@font-face {
+  font-family: "APK Protocol";
+  src: url("/fonts/APK-Protocol-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "APK Protocol";
+  src: url("/fonts/APK-Protocol-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Px Grotesk Font Family */
+@font-face {
+  font-family: "Px Grotesk";
+  src: url("/fonts/Px-Grotesk-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Px Grotesk Screen";
+  src: url("/fonts/Px-Grotesk-Screen.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Px Grotesk Mono Font Family */
+@font-face {
+  font-family: "Px Grotesk Mono";
+  src: url("/fonts/Px-Grotesk-Mono-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Tailwind CSS Configuration */
+@theme {
+  --font-family-apk: "APK Protocol", ui-sans-serif, system-ui, sans-serif;
+  --font-family-grotesk: "Px Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-family-grotesk-screen: "Px Grotesk Screen", ui-sans-serif, system-ui, sans-serif;
+  --font-family-grotesk-mono: "Px Grotesk Mono", ui-monospace, monospace;
+}
+
+/* Custom Font Classes */
+
+/* APK Protocol */
+.font-apk {
+  font-family: "APK Protocol", ui-sans-serif, system-ui, sans-serif;
+}
+
+.font-apk-regular {
+  font-family: "APK Protocol", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 400;
+}
+
+.font-apk-medium {
+  font-family: "APK Protocol", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 500;
+}
+
+/* Px Grotesk */
+.font-grotesk {
+  font-family: "Px Grotesk", ui-sans-serif, system-ui, sans-serif;
+}
+
+.font-grotesk-regular {
+  font-family: "Px Grotesk", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 400;
+}
+
+/* Px Grotesk Screen */
+.font-grotesk-screen {
+  font-family: "Px Grotesk Screen", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Px Grotesk Mono */
+.font-grotesk-mono {
+  font-family: "Px Grotesk Mono", ui-monospace, monospace;
+}
+
+.font-grotesk-mono-bold {
+  font-family: "Px Grotesk Mono", ui-monospace, monospace;
+  font-weight: 700;
+}
