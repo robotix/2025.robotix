@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Navbar() {
     return (
-        <nav className="w-full fixed top-0 left-0 z-20 backdrop-blur-md flex justify-between items-center px-16 py-4">
+        <nav className="w-full fixed top-0 left-0 z-30 backdrop-blur-md flex justify-between items-center px-16 py-4">
             <Link href="/">
                 <img
                     src="/logo_text.png"

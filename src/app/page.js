@@ -201,6 +201,7 @@ export default function Home() {
                         <div className="absolute left-9 w-[1px] top-0 h-full bg-[rgb(66,68,83)]"></div>
                         <div className="absolute right-9 w-[1px] top-0 h-full bg-[rgb(66,68,83)]"></div>
                         <div className="absolute bottom-9 left-0 right-0 h-[1px] bg-[rgb(66,68,83)]"></div>
+                        <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-[rgb(66,68,83)]"></div>
                         <div className="absolute bottom-9 left-9 h-[1.5px] w-3 bg-[#b7b9c5] -translate-x-1/2"></div>
                         <div className="absolute bottom-9 left-9 h-3 w-[1.5px] bg-[#b7b9c5] -translate-x-1/2 translate-y-1/2"></div>
                         <div className="absolute bottom-9 right-9 h-[1.5px] w-3 bg-[#b7b9c5] translate-x-1/2"></div>
@@ -235,7 +236,7 @@ export default function Home() {
                         ))}
                     </div>
                 </div>
-                <div className="min-h-screen w-full"></div>
+                <div className="min-h-screen w-full bg-[#0b0b0e]"></div>
             </main>
         </>
     );
