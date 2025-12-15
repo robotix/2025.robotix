@@ -18,6 +18,13 @@ export default function About() {
 
     const finalText1 = "We believe in sharing knowledge";
 
+    const hardwareAccel = {
+        transform: "translateZ(0)",
+        willChange: "transform",
+        WebkitBackfaceVisibility: "hidden",
+        backfaceVisibility: "hidden",
+    };
+
     useGSAP(
         () => {
             const ctx = gsap.context(() => {
@@ -74,7 +81,11 @@ export default function About() {
             setDisplayText1(
                 finalText1
                     .split("")
-                    .map((ch, i) => (i < iter1 ? finalText1[i] : chars[Math.floor(Math.random() * chars.length)]))
+                    .map((ch, i) =>
+                        i < iter1
+                            ? finalText1[i]
+                            : chars[Math.floor(Math.random() * chars.length)]
+                    )
                     .join("")
             );
 
@@ -150,8 +161,13 @@ export default function About() {
                         <div className="absolute bottom-9 right-9 h-[1.5px] w-3 bg-[#b7b9c5] translate-x-1/2"></div>
                         <div className="absolute bottom-9 right-9 h-3 w-[1.5px] bg-[#b7b9c5] translate-x-1/2 translate-y-1/2"></div>
 
-                        <div className="uppercase text-[#838698] mb-6 text-sm font-family-grotesk-mono">Our mission</div>
-                        <div ref={textRef} className="mb-6 font-family-grotesk text-4xl text-[#e9ede5] leading-14">
+                        <div className="uppercase text-[#838698] mb-6 text-sm font-family-grotesk-mono">
+                            Our mission
+                        </div>
+                        <div
+                            ref={textRef}
+                            className="mb-6 font-family-grotesk text-4xl text-[#e9ede5] leading-14"
+                        >
                             {displayText1}
                         </div>
                     </div>
@@ -159,17 +175,71 @@ export default function About() {
                     <div
                         ref={gridRef}
                         className="z-10 h-screen absolute top-0 left-0 w-full overflow-hidden grid grid-cols-10 bg-transparent"
-                        style={{ gridAutoRows: `${gridRef.current ? gridRef.current.offsetWidth / 10 : 0}px` }}
+                        style={{
+                            gridAutoRows: `${
+                                gridRef.current
+                                    ? gridRef.current.offsetWidth / 10
+                                    : 0
+                            }px`,
+                        }}
                     >
                         {gridCells.map((cell) => (
-                            <div key={cell} className="bg-transparent aspect-square" />
+                            <div
+                                key={cell}
+                                className="bg-transparent aspect-square"
+                            />
                         ))}
                     </div>
                 </div>
 
-                <div className="min-h-screen w-full bg-[#0b0b0e] flex">
-                    <div className="w-[30vw]"></div>
-                    <div className="w-[50vw]"></div>
+                <div className="min-h-screen w-full bg-[#0b0b0e] relative p-16 pt-28    ">
+                    <div className="absolute left-9 w-px top-0 h-full bg-[rgb(66,68,83)]"></div>
+                    <div className="absolute right-9 w-px top-0 h-full bg-[rgb(66,68,83)]"></div>
+                    <div className="flex justify-between items-start text-[#e9ede5]">
+                        <div className="w-[30vw] font-family-grotesk text-4xl sticky top-32">
+                            Who are we?
+                        </div>
+                        <div
+                            className="w-[50vw] font-family-apk text-3xl leading-11"
+                            style={hardwareAccel}
+                        >
+                            Technology Robotix Society (TRS) is an official
+                            society under the Technology Students' Gymkhana, IIT
+                            Kharagpur, dedicated to the advancement of robotics
+                            and Artificial Intelligence in the campus and
+                            beyond. We are a society that boasts of a dedicated
+                            team which works extensively in these disciplines,
+                            channeling scores of young talented minds into this
+                            exciting field. With its reach expanding steadily
+                            each year, TRS has cemented its position as one of
+                            the nerve centres of amateur robotics in India,
+                            paving the way for world-class Robotics R&D.
+                        </div>
+                    </div>
+                    <div className="flex justify-between items-start text-[#e9ede5] mt-16">
+                        <div className="w-[30vw] font-family-grotesk text-4xl sticky top-32">
+                            What do we do?
+                        </div>
+                        <div
+                            className="w-[50vw] font-family-apk text-3xl leading-11"
+                            style={hardwareAccel}
+                        >
+                            We are involved in various initiatives throughout
+                            the year, spanning the fields of software, manually
+                            controlled machines, and autonomous robots. Our
+                            primary agenda is to spread the culture of robotics
+                            through intra and inter-collegiate workshops,
+                            hackathons, and events like KRAIG. We facilitate
+                            year-long theory and practical sessions where first
+                            years learn to build "one-hour-robots," leading up
+                            to our flagship Winterschool—hands-on sessions
+                            christened as "The most productive weeks in a
+                            fresher's life." Our senior members continue to take
+                            robotics to avenues hitherto thought unreachable,
+                            inspiring the community to better the best every
+                            year.
+                        </div>
+                    </div>
                 </div>
             </main>
         </>
