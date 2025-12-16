@@ -19,7 +19,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:abhinavviju.p@gmail.com",
+                        link: "abhinavviju.p@gmail.com",
                     },
                 ],
             },
@@ -40,7 +40,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:akshaysmenon2003@gmail.com",
+                        link: "akshaysmenon2003@gmail.com",
                     },
                 ],
             },
@@ -61,7 +61,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:Harmeet.s.rathore@gmail.com",
+                        link: "Harmeet.s.rathore@gmail.com",
                     },
                 ],
             },
@@ -69,7 +69,7 @@ export const alumniData = [
                 id: 155,
                 name: "Parthivi",
                 surname: "Gupta",
-                thumbnailUrl: "2022_parthivi.jpeg",
+                thumbnailUrl: "2022_parthivi.jpg",
 
                 social: [
                     {
@@ -82,7 +82,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:guptaparthvi@gmail.com",
+                        link: "guptaparthvi@gmail.com",
                     },
                 ],
             },
@@ -90,7 +90,7 @@ export const alumniData = [
                 id: 154,
                 name: "Tanushree",
                 surname: "Prasad",
-                thumbnailUrl: "2022_tanushree.jpeg",
+                thumbnailUrl: "2022_tanushree.jpg",
 
                 social: [
                     {
@@ -103,7 +103,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:tanushreesidhi@gmail.com",
+                        link: "tanushreesidhi@gmail.com",
                     },
                 ],
             },
@@ -124,7 +124,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:vivekmirani19@gmail.com",
+                        link: "vivekmirani19@gmail.com",
                     },
                 ],
             },
@@ -141,7 +141,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:yashigaurbcgs@gmail.com",
+                        link: "yashigaurbcgs@gmail.com",
                     },
                 ],
             },
@@ -155,7 +155,6 @@ export const alumniData = [
                 name: "Akshay",
                 surname: "Manoj",
                 thumbnailUrl: "akshay.jpg",
-
                 social: [
                     {
                         name: "facebook",
@@ -163,7 +162,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:akshaymb68@gmail.com",
+                        link: "akshaymb68@gmail.com",
                     },
                 ],
             },
@@ -184,7 +183,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:rajanant49@gmail.com",
+                        link: "rajanant49@gmail.com",
                     },
                 ],
             },
@@ -201,7 +200,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:madhav.rajunair@gmail.com",
+                        link: "madhav.rajunair@gmail.com",
                     },
                 ],
             },
@@ -222,7 +221,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:iammanavk@gmail.com",
+                        link: "iammanavk@gmail.com",
                     },
                 ],
             },
@@ -239,7 +238,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:niranjanamadathil184@gmail.com",
+                        link: "niranjanamadathil184@gmail.com",
                     },
                 ],
             },
@@ -256,7 +255,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:130sayan@gmail.com",
+                        link: "130sayan@gmail.com",
                     },
                 ],
             },
@@ -273,7 +272,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:vatsalya_rajaram@yahoo.com",
+                        link: "vatsalya_rajaram@yahoo.com",
                     },
                 ],
             },
@@ -294,7 +293,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:Ayushdeep2001@gmail.com",
+                        link: "Ayushdeep2001@gmail.com",
                     },
                 ],
             },
@@ -311,7 +310,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:diya.chodnekar@gmail.com",
+                        link: "diya.chodnekar@gmail.com",
                     },
                 ],
             },
@@ -332,7 +331,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:nikhu.irig29@gmail.com",
+                        link: "nikhu.irig29@gmail.com",
                     },
                 ],
             },
@@ -353,7 +352,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:tanmay.mohanty18112002@gmail.com",
+                        link: "tanmay.mohanty18112002@gmail.com",
                     },
                 ],
             },
@@ -374,7 +373,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:tanushri.tawari@gmail.com",
+                        link: "tanushri.tawari@gmail.com",
                     },
                 ],
             },
@@ -391,7 +390,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:vnkaggarwal1@gmail.com",
+                        link: "vnkaggarwal1@gmail.com",
                     },
                 ],
             },
@@ -413,7 +412,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:nairarun261@gmail.com",
+                        link: "nairarun261@gmail.com",
                     },
                 ],
             },
@@ -434,7 +433,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:jagtapazad@gmail.com",
+                        link: "jagtapazad@gmail.com",
                     },
                 ],
             },
@@ -451,7 +450,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:shethdivyanshu2000@gmail.com",
+                        link: "shethdivyanshu2000@gmail.com",
                     },
                 ],
             },
@@ -472,7 +471,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:kartik.punjabi111@gmail.com",
+                        link: "kartik.punjabi111@gmail.com",
                     },
                 ],
             },
@@ -510,7 +509,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:ruthu.sankethi@gmail.com",
+                        link: "ruthu.sankethi@gmail.com",
                     },
                 ],
             },
@@ -531,7 +530,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:nanda17astr10@gmail.com",
+                        link: "nanda17astr10@gmail.com",
                     },
                 ],
             },
@@ -548,7 +547,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:rashmikvc@gmail.com",
+                        link: "rashmikvc@gmail.com",
                     },
                 ],
             },
@@ -574,7 +573,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:shivangi.srivastava@robotix.in",
+                        link: "shivangi.srivastava@robotix.in",
                     },
                 ],
             },
@@ -595,7 +594,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:anirudh.roy@robotix.in",
+                        link: "anirudh.roy@robotix.in",
                     },
                 ],
             },
@@ -616,7 +615,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:abhay.shukla@live.com",
+                        link: "abhay.shukla@live.com",
                     },
                 ],
             },
@@ -637,7 +636,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:kushal.k.2000@gmail.com",
+                        link: "kushal.k.2000@gmail.com",
                     },
                 ],
             },
@@ -663,7 +662,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:anvee.naik@robotix.in",
+                        link: "anvee.naik@robotix.in",
                     },
                 ],
             },
@@ -684,7 +683,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:rohit.ner@robotix.in",
+                        link: "rohit.ner@robotix.in",
                     },
                 ],
             },
@@ -705,7 +704,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:shivansh.mundra@robotix.in",
+                        link: "shivansh.mundra@robotix.in",
                     },
                 ],
             },
@@ -726,7 +725,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:shubhika.garg@robotix.in",
+                        link: "shubhika.garg@robotix.in",
                     },
                 ],
             },
@@ -747,7 +746,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:siddhartha.kapuria@robotix.in",
+                        link: "siddhartha.kapuria@robotix.in",
                     },
                 ],
             },
@@ -768,7 +767,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:vidit.goel@robotix.in",
+                        link: "vidit.goel@robotix.in",
                     },
                 ],
             },
@@ -789,7 +788,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:jaydeep.godbole@robotix.in",
+                        link: "jaydeep.godbole@robotix.in",
                     },
                 ],
             },
@@ -806,7 +805,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:manthan.patel@robotix.in",
+                        link: "manthan.patel@robotix.in",
                     },
                 ],
             },
@@ -827,7 +826,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:shreyansh.vats@robotix.in",
+                        link: "shreyansh.vats@robotix.in",
                     },
                 ],
             },
@@ -848,7 +847,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:tanya.sneh@robotix.in",
+                        link: "tanya.sneh@robotix.in",
                     },
                 ],
             },
@@ -870,7 +869,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:aman.chandra@robotix.in",
+                        link: "aman.chandra@robotix.in",
                     },
                     {
                         name: "site",
@@ -891,7 +890,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:aditi.kambli@robotix.in",
+                        link: "aditi.kambli@robotix.in",
                     },
                 ],
             },
@@ -908,7 +907,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:ayush.patnaik@robotix.in",
+                        link: "ayush.patnaik@robotix.in",
                     },
                 ],
             },
@@ -925,7 +924,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:rohan.sitaniya@robotix.in",
+                        link: "rohan.sitaniya@robotix.in",
                     },
                 ],
             },
@@ -942,7 +941,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:swadha.gupta@robotix.in",
+                        link: "swadha.gupta@robotix.in",
                     },
                 ],
             },
@@ -963,7 +962,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:aditi.singh@robotix.in",
+                        link: "aditi.singh@robotix.in",
                     },
                 ],
             },
@@ -985,7 +984,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:adityasanjay@robotix.in",
+                        link: "adityasanjay@robotix.in",
                     },
                 ],
             },
@@ -1002,7 +1001,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:manash@robotix.in",
+                        link: "manash@robotix.in",
                     },
                 ],
             },
@@ -1019,7 +1018,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:shweta@robotix.in",
+                        link: "shweta@robotix.in",
                     },
                 ],
             },
@@ -1040,7 +1039,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:sourish@robotix.in",
+                        link: "sourish@robotix.in",
                     },
                 ],
             },
@@ -1061,7 +1060,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:vraj@robotix.in",
+                        link: "vraj@robotix.in",
                     },
                 ],
             },
@@ -1078,7 +1077,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:amit.pathak@robotix.in",
+                        link: "amit.pathak@robotix.in",
                     },
                 ],
             },
@@ -1099,7 +1098,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:shivang.agrawal@robotix.in",
+                        link: "shivang.agrawal@robotix.in",
                     },
                 ],
             },
@@ -1116,7 +1115,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:stuti.modi@robotix.in",
+                        link: "stuti.modi@robotix.in",
                     },
                 ],
             },
@@ -1133,7 +1132,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:vivek.mudgal@robotix.in",
+                        link: "vivek.mudgal@robotix.in",
                     },
                 ],
             },
@@ -1159,7 +1158,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:abhinav.jain@robotix.in",
+                        link: "abhinav.jain@robotix.in",
                     },
                 ],
             },
@@ -1180,7 +1179,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:aditya.narayan@robotix.in",
+                        link: "aditya.narayan@robotix.in",
                     },
                 ],
             },
@@ -1197,7 +1196,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:apoorva.sharma@robotix.in",
+                        link: "apoorva.sharma@robotix.in",
                     },
                 ],
             },
@@ -1214,7 +1213,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:rohan@robotix.in",
+                        link: "rohan@robotix.in",
                     },
                 ],
             },
@@ -1244,7 +1243,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:shashwat@robotix.in",
+                        link: "shashwat@robotix.in",
                     },
                 ],
             },
@@ -1261,7 +1260,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:shubhangi@robotix.in",
+                        link: "shubhangi@robotix.in",
                     },
                 ],
             },
@@ -1283,7 +1282,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:anchitn@robotix.in",
+                        link: "anchitn@robotix.in",
                     },
                 ],
             },
@@ -1300,7 +1299,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:harsheel@robotix.in",
+                        link: "harsheel@robotix.in",
                     },
                 ],
             },
@@ -1317,7 +1316,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:ruchita@robotix.in",
+                        link: "ruchita@robotix.in",
                     },
                 ],
             },
@@ -1334,7 +1333,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:sudeshna@robotix.in",
+                        link: "sudeshna@robotix.in",
                     },
                 ],
             },
@@ -1351,7 +1350,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:vipasha@robotix.in",
+                        link: "vipasha@robotix.in",
                     },
                 ],
             },
@@ -1368,7 +1367,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:mratunjay@robotix.in",
+                        link: "mratunjay@robotix.in",
                     },
                 ],
             },
@@ -1385,7 +1384,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:riya@robotix.in",
+                        link: "riya@robotix.in",
                     },
                 ],
             },
@@ -1407,7 +1406,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:yogesh@robotix.in",
+                        link: "yogesh@robotix.in",
                     },
                 ],
             },
@@ -1424,7 +1423,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:soumyadeep@robotix.in",
+                        link: "soumyadeep@robotix.in",
                     },
                 ],
             },
@@ -1441,7 +1440,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:rahuljhawar@robotix.in",
+                        link: "rahuljhawar@robotix.in",
                     },
                 ],
             },
@@ -1458,7 +1457,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:payal@robotix.in",
+                        link: "payal@robotix.in",
                     },
                 ],
             },
@@ -1475,7 +1474,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:deepak@robotix.in",
+                        link: "deepak@robotix.in",
                     },
                 ],
             },
@@ -1492,7 +1491,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:anushka@robotix.in",
+                        link: "anushka@robotix.in",
                     },
                 ],
             },
@@ -1509,7 +1508,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:ashutosh@robotix.in",
+                        link: "ashutosh@robotix.in",
                     },
                 ],
             },
@@ -1526,7 +1525,7 @@ export const alumniData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:ayush.garg@robotix.in",
+                        link: "ayush.garg@robotix.in",
                     },
                 ],
             },

@@ -14,7 +14,7 @@ export const teamData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:adityanandy2802@gmail.com",
+                        link: "adityanandy2802@gmail.com",
                     },
                 ],
             },
@@ -34,7 +34,7 @@ export const teamData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:amritlalsingh9920@kgpian.iitkgp.ac.in",
+                        link: "amritlalsingh9920@kgpian.iitkgp.ac.in",
                     },
                 ],
             },
@@ -54,7 +54,7 @@ export const teamData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:parthgupta2510@gmail.com",
+                        link: "parthgupta2510@gmail.com",
                     },
                 ],
             },
@@ -74,14 +74,14 @@ export const teamData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:paithankarprasanna@kgpian.iitkgp.ac.in ",
+                        link: "paithankarprasanna@kgpian.iitkgp.ac.in ",
                     },
                 ],
             },
             {
                 name: "Siddharth",
                 surname: "Asthana",
-                thumbnailUrl: "2022_siddharth.jpeg",
+                thumbnailUrl: "2022_siddharth.jpg",
                 id: 5,
                 social: [
                     {
@@ -94,7 +94,7 @@ export const teamData = [
                     },
                     {
                         name: "email",
-                        link: "mailto:asthanasiddharth2002@gmail.com",
+                        link: "asthanasiddharth2002@gmail.com",
                     },
                 ],
             },
@@ -142,7 +142,6 @@ export const teamData = [
                 name: "Prakhar",
                 surname: "Tripathi",
                 thumbnailUrl: "2023_prakhar.jpg",
-                tag: "Governor",
                 id: 8,
                 social: [
                     {
@@ -164,7 +163,6 @@ export const teamData = [
                 surname: "Sharma",
                 thumbnailUrl: "2023_divyansh.jpg",
                 id: 9,
-                tag: "Governor",
                 social: [
                     {
                         name: "facebook",
@@ -310,6 +308,7 @@ export const teamData = [
                 surname: "Mathur",
                 thumbnailUrl: "2024_dhruv.jpg",
                 id: 16,
+                tag: "Governor",
                 social: [
                     {
                         name: "facebook",
@@ -370,6 +369,7 @@ export const teamData = [
                 surname: "Mehta",
                 thumbnailUrl: "2024_jash.jpg",
                 id: 19,
+                tag: "Governor",
                 social: [
                     {
                         name: "facebook",
@@ -422,6 +422,307 @@ export const teamData = [
                     {
                         name: "email",
                         link: "samarthg1804@gmail.com",
+                    },
+                ],
+            },
+        ],
+    },
+    {
+        title: "Sub Head",
+        team: [
+            {
+                name: "Shreyas",
+                surname: "Anand",
+                id: 22,
+                thumbnailUrl: "2025_shreyas.jpg",
+                social: [
+                    {
+                        name: "facebook",
+                        link: "https://www.facebook.com/profile.php?id=61565444232690",
+                    },
+                    {
+                        name: "linkedin",
+                        link: "https://www.linkedin.com/in/shreyas-anand-663961319/",
+                    },
+                    {
+                        name: "email",
+                        link: "shreyasanand.official@gmail.com",
+                    },
+                ],
+            },
+            {
+                name: "Rupesh",
+                surname: "Devata",
+                id: 23,
+                thumbnailUrl: "2025_rupesh.jpg",
+                social: [
+                    {
+                        name: "facebook",
+                        link: "https://www.facebook.com/rupesh.devata?mibextid=ZbWKwL",
+                    },
+                    {
+                        name: "linkedin",
+                        link: "https://www.linkedin.com/in/rupesh-devata-b739b6328/",
+                    },
+                    {
+                        name: "email",
+                        link: "rupeshdevata@gmail.com",
+                    },
+                ],
+            },
+            {
+                name: "Siddhant",
+                surname: "Barpanda",
+                id: 24,
+                thumbnailUrl: "2025_siddhant.jpg",
+                social: [
+                    {
+                        name: "facebook",
+                        link: "https://www.facebook.com/profile.php?id=61561488944935",
+                    },
+                    {
+                        name: "github",
+                        link: "https://github.com/Parziwal-19",
+                    },
+                    {
+                        name: "linkedin",
+                        link: "https://www.linkedin.com/in/siddhant-barpanda-568b3031a/",
+                    },
+                    {
+                        name: "email",
+                        link: "siddhantb1905@gamil.com",
+                    },
+                ],
+            },
+            {
+                name: "Ayush",
+                surname: "Bhushan",
+                id: 25,
+                thumbnailUrl: "2025_ayush.jpg",
+                social: [
+                    {
+                        name: "facebook",
+                        link: "https://www.facebook.com/profile.php?id=61565687792950&mibextid=LQQJ4d",
+                    },
+                    {
+                        name: "linkedin",
+                        link: "https://www.linkedin.com/in/ayush-bhushan-02ba90320/",
+                    },
+                    {
+                        name: "email",
+                        link: "ayushbhushan11@gmail.com",
+                    },
+                ],
+            },
+            {
+                name: "Vinay",
+                surname: "A",
+                id: 26,
+                thumbnailUrl: "2025_vinay.png",
+                social: [
+                    {
+                        name: "facebook",
+                        link: "https://www.facebook.com/share/Uqd38GAjJtE6P394/?mibextid=qi2Omg",
+                    },
+                    {
+                        name: "linkedin",
+                        link: "https://www.linkedin.com/in/vinay-a-79a757325/",
+                    },
+                    {
+                        name: "email",
+                        link: "vinaypersonal17@gmail.com",
+                    },
+                ],
+            },
+            {
+                name: "Siddharth",
+                surname: "Jain",
+                id: 27,
+                thumbnailUrl: "2025_siddharthj.jpg",
+                social: [
+                    {
+                        name: "facebook",
+                        link: "https://www.facebook.com/share/MYieYe8Z17GZgbbE/?mibextid=qi2Omg",
+                    },
+                    {
+                        name: "linkedin",
+                        link: "https://www.linkedin.com/in/siddharth-jain-9a4707328/",
+                    },
+                    {
+                        name: "email",
+                        link: "jainsiddharth263@gmail.com",
+                    },
+                ],
+            },
+            {
+                name: "Uddipto",
+                surname: "Mandal",
+                id: 28,
+                thumbnailUrl: "2025_uddipto.jpg",
+                social: [
+                    {
+                        name: "facebook",
+                        link: "https://www.facebook.com/Uddipto1/",
+                    },
+                    {
+                        name: "linkedin",
+                        link: "https://www.linkedin.com/in/uddipto-mandal-5487b0320/",
+                    },
+                    {
+                        name: "email",
+                        link: "uddiptomandal2006@gmail.com",
+                    },
+                ],
+            },
+            {
+                name: "Prateek",
+                surname: "Kesavarapu",
+                id: 29,
+                thumbnailUrl: "2025_prateek.jpeg",
+                social: [
+                    {
+                        name: "facebook",
+                        link: "https://www.facebook.com/profile.php?id=61564796717985&mibextid=ZbWKwL",
+                    },
+                    {
+                        name: "github",
+                        link: "http://github.com/NeoDrags",
+                    },
+                    {
+                        name: "linkedin",
+                        link: "https://www.linkedin.com/in/prateek-kesavarapu",
+                    },
+                    {
+                        name: "email",
+                        link: "kesavarapu.prateek@gmail.com",
+                    },
+                ],
+            },
+            {
+                name: "Adya",
+                surname: "Singh",
+                id: 30,
+                thumbnailUrl: "2025_adya.jpg",
+                social: [
+                    {
+                        name: "facebook",
+                        link: "https://www.facebook.com/profile.php?id=61565889009909&mibextid=JRoKGi",
+                    },
+                    {
+                        name: "linkedin",
+                        link: "https://www.linkedin.com/in/adya-singh-20296632b",
+                    },
+                    {
+                        name: "email",
+                        link: "adya_singh@outlook.com",
+                    },
+                ],
+            },
+            {
+                name: "Sujal",
+                surname: "Singh",
+                id: 31,
+                thumbnailUrl: "2025_sujal.jpg",
+                social: [
+                    {
+                        name: "facebook",
+                        link: "https://www.facebook.com/profile.php?id=61565920817973",
+                    },
+                    {
+                        name: "linkedin",
+                        link: "https://www.linkedin.com/in/sujal-singh-4b04a2327/",
+                    },
+                    {
+                        name: "email",
+                        link: "sujaldpsdps@gmail.com",
+                    },
+                ],
+            },
+            {
+                name: "Sohan",
+                surname: "Choudhury",
+                id: 32,
+                thumbnailUrl: "2025_sohan.jpg",
+                social: [
+                    {
+                        name: "facebook",
+                        link: "https://www.facebook.com/profile.php",
+                    },
+                    {
+                        name: "github",
+                        link: "https://github.com/spak1235",
+                    },
+                    {
+                        name: "linkedin",
+                        link: "https://www.linkedin.com/in/sohan-choudhury-151b48315/",
+                    },
+                    {
+                        name: "email",
+                        link: "sohanchoudhury12@gmail.com",
+                    },
+                ],
+            },
+            {
+                name: "Siddharth",
+                surname: "Sreejith",
+                id: 33,
+                thumbnailUrl: "2025_siddharths.jpg",
+                social: [
+                    {
+                        name: "facebook",
+                        link: "https://www.facebook.com/profile.php?id=61563959177863",
+                    },
+                    {
+                        name: "linkedin",
+                        link: "https://www.linkedin.com/in/siddharth-sreejith-b19128324/",
+                    },
+                    {
+                        name: "email",
+                        link: "sidd.sreejith@gmail.com",
+                    },
+                ],
+            },
+            {
+                name: "Praneet",
+                surname: "Dixit",
+                id: 34,
+                thumbnailUrl: "2025_praneet.png",
+                social: [
+                    {
+                        name: "facebook",
+                        link: "https://www.facebook.com/praneetdixitkgp",
+                    },
+                    {
+                        name: "github",
+                        link: "https://github.com/PraneetDixit",
+                    },
+                    {
+                        name: "linkedin",
+                        link: "https://linkedin.com/in/praneet-dixit",
+                    },
+                    {
+                        name: "email",
+                        link: "praneetdixit1234@gmail.com",
+                    },
+                ],
+            },
+            {
+                name: "Durva",
+                surname: "Daga",
+                id: 35,
+                thumbnailUrl: "2025_durva.jpg",
+                social: [
+                    {
+                        name: "facebook",
+                        link: "https://www.facebook.com/profile.php?id=61564811373108&mibextid=ZbWKwL",
+                    },
+                    {
+                        name: "linkedin",
+                        link: "https://www.linkedin.com/in/durva-daga-0a1108313/",
+                    },
+                    {
+                        name: "email",
+                        link: "dagadurva7@gmail.com",
                     },
                 ],
             },

@@ -1,9 +1,12 @@
 "use client";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, use } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
+import { teamData } from "@/data/team";
+import { alumniData } from "@/data/alumni";
+import { ArrowRight } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,6 +18,7 @@ export default function About() {
     const textRef = useRef(null);
     const [gridCells, setGridCells] = useState([]);
     const [displayText1, setDisplayText1] = useState("");
+    const [activeTab, setActiveTab] = useState(parseInt(alumniData[0].title));
 
     const finalText1 = "We believe in sharing knowledge";
 
@@ -36,7 +40,7 @@ export default function About() {
                     ease: "none",
                 });
 
-                // Glow via drop-shadow filter (no opacity change)
+                // Glow via drop-shadow filter
                 gsap.to(logoRef.current, {
                     filter: "drop-shadow(0 0 8px rgba(57, 183, 242, 0.3))",
                     duration: 2,
@@ -54,7 +58,7 @@ export default function About() {
                     ease: "sine.inOut",
                 });
 
-                // Reveal grid cells randomly to transparent
+                // Reveal grid cells
                 if (gridRef.current) {
                     const cells = Array.from(gridRef.current.children);
                     const shuffled = [...cells].sort(() => Math.random() - 0.5);
@@ -73,7 +77,6 @@ export default function About() {
     );
 
     useEffect(() => {
-        // Parallel text scramble for two lines
         const chars = "!@#$%^&*()_+-=[]{}|;:,.<>?ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         let iter1 = 0;
 
@@ -135,6 +138,55 @@ export default function About() {
         };
     }, []);
 
+    const handleCardMouseMove = (e) => {
+        const card = e.currentTarget;
+        const imageContainer = card.querySelector(".tilt-container");
+        const overlay = card.querySelector(".shine-overlay");
+
+        const rect = imageContainer.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        if (overlay) {
+            gsap.to(overlay, {
+                "--x": `${x}px`,
+                "--y": `${y}px`,
+                duration: 0.2,
+                ease: "power2.out",
+            });
+        }
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -3;
+        const rotateY = ((x - centerX) / centerX) * 3;
+
+        gsap.to(imageContainer, {
+            rotationX: rotateX,
+            rotationY: rotateY,
+            scale: 1.01, // Subtle scale up for feel
+            transformPerspective: 1000, // Essential for 3D effect
+            transformStyle: "preserve-3d",
+            duration: 0.4,
+            ease: "power2.out",
+        });
+    };
+
+    const handleCardMouseLeave = (e) => {
+        const card = e.currentTarget;
+        const imageContainer = card.querySelector(".tilt-container");
+
+        // Reset Tilt
+        gsap.to(imageContainer, {
+            rotationX: 0,
+            rotationY: 0,
+            scale: 1,
+            duration: 0.6,
+            ease: "elastic.out(1, 0.5)", // Nice spring back effect
+            clearProps: "transform", // Clean up to avoid stacking contexts if not needed
+        });
+    };
+
     return (
         <>
             <main ref={mainRef} className="relative">
@@ -192,9 +244,10 @@ export default function About() {
                     </div>
                 </div>
 
-                <div className="min-h-screen w-full bg-[#0b0b0e] relative p-16 pt-28    ">
+                <div className="min-h-screen w-full bg-[#0b0b0e] relative p-16 pt-28 border-b border-[rgb(66,68,83)]">
                     <div className="absolute left-9 w-px top-0 h-full bg-[rgb(66,68,83)]"></div>
                     <div className="absolute right-9 w-px top-0 h-full bg-[rgb(66,68,83)]"></div>
+
                     <div className="flex justify-between items-start text-[#e9ede5]">
                         <div className="w-[30vw] font-family-grotesk text-4xl sticky top-32">
                             Who are we?
@@ -216,6 +269,7 @@ export default function About() {
                             paving the way for world-class Robotics R&D.
                         </div>
                     </div>
+
                     <div className="flex justify-between items-start text-[#e9ede5] mt-16">
                         <div className="w-[30vw] font-family-grotesk text-4xl sticky top-32">
                             What do we do?
@@ -238,6 +292,269 @@ export default function About() {
                             robotics to avenues hitherto thought unreachable,
                             inspiring the community to better the best every
                             year.
+                        </div>
+                    </div>
+                </div>
+
+                <div className="w-full bg-[#0b0b0e] relative p-16 pt-24">
+                    <div className="absolute left-9 w-px top-0 h-full bg-[rgb(66,68,83)]"></div>
+                    <div className="absolute right-9 w-px top-0 h-full bg-[rgb(66,68,83)]"></div>
+                    <div className="">
+                        <h3 className="font-family-grotesk-mono uppercase font-bold text-base text-[#838698] mb-6">
+                            Meet the team
+                        </h3>
+                        <h2 className="font-family-grotesk text-[#e9ede5] text-4xl">
+                            Coordinators
+                        </h2>
+                        <div className="mt-12 grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-8 justify-items-center">
+                            {teamData[0].team.map((member, index) => (
+                                <div
+                                    key={index}
+                                    onMouseMove={handleCardMouseMove}
+                                    onMouseLeave={handleCardMouseLeave}
+                                    className="w-full max-w-[280px] flex flex-col gap-4 group cursor-default"
+                                >
+                                    {/* Image Container with 3D Tilt & Spotlight */}
+                                    <div className="tilt-container relative w-full aspect-square rounded-md overflow-hidden bg-[#242733] will-change-transform">
+                                        <Image
+                                            src={`/team/coordinators/${member.thumbnailUrl}`}
+                                            alt={member.name}
+                                            fill
+                                            className="object-cover" // Removed hover scale here to avoid conflict with tilt
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                        />
+
+                                        {/* Spotlight Overlay: Reduced radius (350px) and subtle blue */}
+                                        <div
+                                            className="shine-overlay absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                                            style={{
+                                                background:
+                                                    "radial-gradient(350px circle at var(--x, 50%) var(--y, 50%), rgba(57, 183, 242, 0.15), transparent 40%)",
+                                            }}
+                                        ></div>
+                                    </div>
+
+                                    <p className="font-family-apk text-lg text-[#e9ede5]">{`${member.name} ${member.surname}`}</p>
+                                    <div className="flex flex-wrap">
+                                        {member.social.map(
+                                            (socialLink, idx) =>
+                                                socialLink.link && (
+                                                    <a
+                                                        key={idx}
+                                                        href={
+                                                            socialLink.name ==
+                                                            "email"
+                                                                ? `mailto:${socialLink.link}`
+                                                                : socialLink.link
+                                                        }
+                                                        target="_blank"
+                                                        className="group/icon flex shrink-0 items-center gap-4 mr-6 mb-2 text-[#e9ede5] transition-colors duration-300 ease-in-out hover:text-[#39b7f2]"
+                                                    >
+                                                        <span className="uppercase font-family-grotesk-mono font-bold text-sm">
+                                                            {socialLink.name}
+                                                        </span>
+                                                        <span className="h-9 w-9 flex items-center justify-center text-sm border border-[#242733] rounded-sm">
+                                                            <ArrowRight className="-rotate-45 group-hover/icon:rotate-0 transition-all duration-300 ease-in-out" />
+                                                        </span>
+                                                    </a>
+                                                )
+                                        )}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                        <h2 className="font-family-grotesk text-[#e9ede5] text-4xl mt-9">
+                            Heads
+                        </h2>
+                        <div className="mt-12 grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-8 justify-items-center">
+                            {teamData[1].team.map((member, index) => (
+                                <div
+                                    key={index}
+                                    onMouseMove={handleCardMouseMove}
+                                    onMouseLeave={handleCardMouseLeave}
+                                    className="w-full max-w-[280px] flex flex-col group cursor-default"
+                                >
+                                    {/* Image Container with 3D Tilt & Spotlight */}
+                                    <div className="tilt-container relative w-full aspect-square rounded-md overflow-hidden bg-[#242733] will-change-transform mb-4">
+                                        <Image
+                                            src={`/team/heads/${member.thumbnailUrl}`}
+                                            alt={member.name}
+                                            fill
+                                            className="object-cover" // Removed hover scale here to avoid conflict with tilt
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                        />
+
+                                        {/* Spotlight Overlay: Reduced radius (350px) and subtle blue */}
+                                        <div
+                                            className="shine-overlay absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                                            style={{
+                                                background:
+                                                    "radial-gradient(350px circle at var(--x, 50%) var(--y, 50%), rgba(57, 183, 242, 0.15), transparent 40%)",
+                                            }}
+                                        ></div>
+                                    </div>
+
+                                    <p className="font-family-apk text-lg text-[#e9ede5]">{`${member.name} ${member.surname}`}</p>
+                                    {member.tag && (
+                                        <p className="text-[#838698] font-family-apk text-lg">
+                                            {member.tag}
+                                        </p>
+                                    )}
+                                    <div className="flex flex-wrap mt-4">
+                                        {member.social.map(
+                                            (socialLink, idx) =>
+                                                socialLink.link && (
+                                                    <a
+                                                        key={idx}
+                                                        href={
+                                                            socialLink.name ==
+                                                            "email"
+                                                                ? `mailto:${socialLink.link}`
+                                                                : socialLink.link
+                                                        }
+                                                        target="_blank"
+                                                        className="group/icon flex shrink-0 items-center gap-4 mr-6 mb-2 text-[#e9ede5] transition-colors duration-300 ease-in-out hover:text-[#39b7f2]"
+                                                    >
+                                                        <span className="uppercase font-family-grotesk-mono font-bold text-sm">
+                                                            {socialLink.name}
+                                                        </span>
+                                                        <span className="h-9 w-9 flex items-center justify-center text-sm border border-[#242733] rounded-sm">
+                                                            <ArrowRight className="-rotate-45 group-hover/icon:rotate-0 transition-all duration-300 ease-in-out" />
+                                                        </span>
+                                                    </a>
+                                                )
+                                        )}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                        <h2 className="font-family-grotesk text-[#e9ede5] text-4xl mt-9">
+                            Sub Heads
+                        </h2>
+                        <div className="mt-12 grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-8 justify-items-center">
+                            {teamData[2].team.map((member, index) => (
+                                <div
+                                    key={index}
+                                    onMouseMove={handleCardMouseMove}
+                                    onMouseLeave={handleCardMouseLeave}
+                                    className="w-full max-w-[280px] flex flex-col gap-4 group cursor-default"
+                                >
+                                    <div className="tilt-container relative w-full aspect-square rounded-md overflow-hidden bg-[#242733] will-change-transform">
+                                        <Image
+                                            src={`/team/subheads/${member.thumbnailUrl}`}
+                                            alt={member.name}
+                                            fill
+                                            className="object-cover" // Removed hover scale here to avoid conflict with tilt
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                        />
+
+                                        <div
+                                            className="shine-overlay absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                                            style={{
+                                                background:
+                                                    "radial-gradient(350px circle at var(--x, 50%) var(--y, 50%), rgba(57, 183, 242, 0.15), transparent 40%)",
+                                            }}
+                                        ></div>
+                                    </div>
+
+                                    <p className="font-family-apk text-lg text-[#e9ede5]">{`${member.name} ${member.surname}`}</p>
+                                    <div className="flex flex-wrap">
+                                        {member.social.map(
+                                            (socialLink, idx) =>
+                                                socialLink.link && (
+                                                    <a
+                                                        key={idx}
+                                                        href={
+                                                            socialLink.name ==
+                                                            "email"
+                                                                ? `mailto:${socialLink.link}`
+                                                                : socialLink.link
+                                                        }
+                                                        target="_blank"
+                                                        className="group/icon flex shrink-0 items-center gap-4 mr-6 mb-2 text-[#e9ede5] transition-colors duration-300 ease-in-out hover:text-[#39b7f2]"
+                                                    >
+                                                        <span className="uppercase font-family-grotesk-mono font-bold text-sm">
+                                                            {socialLink.name}
+                                                        </span>
+                                                        <span className="h-9 w-9 flex items-center justify-center text-sm border border-[#242733] rounded-sm">
+                                                            <ArrowRight className="-rotate-45 group-hover/icon:rotate-0 transition-all duration-300 ease-in-out" />
+                                                        </span>
+                                                    </a>
+                                                )
+                                        )}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                        <h2 className="font-family-grotesk text-[#e9ede5] text-4xl mt-9">
+                            Alumni
+                        </h2>
+                        <ul className="flex mx-auto w-fit my-5">
+                            {alumniData.map((alumnus, index) => (
+                                    <li
+                                        key={index}
+                                        className={`cursor-pointer border-y-2 border-r-2 ${index == 0 ? "border-l-2 rounded-l-lg" : ""} ${index == alumniData.length - 1 ? "rounded-r-lg" : ""} border-[#838698] p-2 text-[#838698] hover:text-[#f5f6f6] transition-colors duration-300 ease-in-out text-lg`}
+                                        style={alumnus.title == activeTab ? {color: "#f5f6f6", borderColor: "#f5f6f6"} : alumnus.title == activeTab+1 ? {borderRightColor: "#f5f6f6"} : {}}
+                                        onClick={()=>{setActiveTab(parseInt(alumnus.title))}}
+                                    >
+                                        {alumnus.title}
+                                    </li>
+                            ))}
+                        </ul>
+                        <div className="mt-12 grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-8 justify-items-center">
+                            {(alumniData.find(alumnus => alumnus.title == activeTab)?.team || []).map((member, index) => (
+                                <div
+                                    key={index}
+                                    onMouseMove={handleCardMouseMove}
+                                    onMouseLeave={handleCardMouseLeave}
+                                    className="w-full max-w-[280px] flex flex-col gap-4 group cursor-default"
+                                >
+                                    <div className="tilt-container relative w-full aspect-square rounded-md overflow-hidden bg-[#242733] will-change-transform">
+                                        <Image
+                                            src={`/alumni/${activeTab}/${member.thumbnailUrl}`}
+                                            alt={member.name}
+                                            fill
+                                            className="object-cover"
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                        />
+                                        <div
+                                            className="shine-overlay absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                                            style={{
+                                                background:
+                                                    "radial-gradient(350px circle at var(--x, 50%) var(--y, 50%), rgba(57, 183, 242, 0.15), transparent 40%)",
+                                            }}
+                                        ></div>
+                                    </div>
+                                    <p className="font-family-apk text-lg text-[#e9ede5]">{member.name}{member.surname ? ` ${member.surname}` : ""}</p>
+                                    {member.social && member.social.length > 0 && (
+                                        <div className="flex flex-wrap">
+                                            {member.social.map(
+                                                (socialLink, idx) =>
+                                                    socialLink.link && (
+                                                        <a
+                                                            key={idx}
+                                                            href={
+                                                                socialLink.name ==
+                                                                "email"
+                                                                    ? `mailto:${socialLink.link}`
+                                                                    : socialLink.link
+                                                            }
+                                                            target="_blank"
+                                                            className="group/icon flex shrink-0 items-center gap-4 mr-6 mb-2 text-[#e9ede5] transition-colors duration-300 ease-in-out hover:text-[#39b7f2]"
+                                                        >
+                                                            <span className="uppercase font-family-grotesk-mono font-bold text-sm">
+                                                                {socialLink.name}
+                                                            </span>
+                                                            <span className="h-9 w-9 flex items-center justify-center text-sm border border-[#242733] rounded-sm">
+                                                                <ArrowRight className="-rotate-45 group-hover/icon:rotate-0 transition-all duration-300 ease-in-out" />
+                                                            </span>
+                                                        </a>
+                                                    )
+                                            )}
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>
