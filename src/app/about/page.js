@@ -103,7 +103,6 @@ export default function About() {
     }, []);
 
     useEffect(() => {
-        if (videoRef.current) videoRef.current.playbackRate = 0.5;
 
         const calculateGrid = () => {
             if (!gridRef.current) return;
@@ -200,10 +199,10 @@ export default function About() {
                         playsInline
                         preload="auto"
                     >
-                        <source src="/teaser.mp4" type="video/mp4" />
+                        <source src="/bg_video2.mp4" type="video/mp4" />
                     </video>
 
-                    <div className="z-20 h-screen absolute top-0 left-0 w-full p-16 flex items-center justify-center bg-black/80 flex-col">
+                    <div className="z-20 h-screen absolute top-0 left-0 w-full p-16 flex items-center justify-center bg-black/10 flex-col">
                         <div className="absolute left-9 w-px top-0 h-full bg-[rgb(66,68,83)]"></div>
                         <div className="absolute right-9 w-px top-0 h-full bg-[rgb(66,68,83)]"></div>
                         <div className="absolute bottom-9 left-0 right-0 h-px bg-[rgb(66,68,83)]"></div>
