@@ -7,6 +7,10 @@ import "./globals.css";
 export const metadata = {
     title: "Technology Robotix Society",
     description: "We are the focal point of robotics at IIT Kharagpur.",
+    icons: [
+        { rel: "icon", url: "/logo.ico" },
+        { rel: "icon", type: "image/png", url: "/logo.png" },
+    ],
 };
 
 export default function RootLayout({ children }) {

@@ -5,6 +5,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
+import WaveParticles from "../components/WaveParticles";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,7 +15,7 @@ export default function Home() {
     const videoRef = useRef(null);
     const gridRef = useRef(null);
     const textRef = useRef(null);
-    
+
     const [gridCells, setGridCells] = useState([]);
     const [displayText1, setDisplayText1] = useState("");
     const [displayText2, setDisplayText2] = useState("");
@@ -22,27 +23,20 @@ export default function Home() {
     const finalText1 = "Technology Robotix Society";
     const finalText2 = "Where machines dare !!";
 
-    // --- STABILITY FIX: Hardware Acceleration Styles ---
-    // Forces these elements to be rasterized by the GPU before they scroll
-    // behind the blur, eliminating the violent 1.5px flickering.
     const hardwareAccel = {
         transform: "translateZ(0)",
         willChange: "transform",
         WebkitBackfaceVisibility: "hidden",
-        backfaceVisibility: "hidden"
+        backfaceVisibility: "hidden",
     };
 
+    // --- GSAP Intro Animations (Unchanged) ---
     useGSAP(
         () => {
             const ctx = gsap.context(() => {
-                // Initial intro animation for main container
-                gsap.to(mainRef.current, {
-                    ease: "power3.out",
-                });
+                gsap.to(mainRef.current, { ease: "power3.out" });
 
-                // Logo animations
                 const timeline = gsap.timeline({ repeat: -1 });
-
                 timeline.to(logoRef.current, {
                     rotation: 360,
                     duration: 20,
@@ -65,91 +59,90 @@ export default function Home() {
                     ease: "sine.inOut",
                 });
 
-                // Animate grid cells
                 if (gridRef.current) {
                     const cells = Array.from(gridRef.current.children);
-                    const shuffledCells = [...cells].sort(() => Math.random() - 0.5);
-                    
+                    const shuffledCells = [...cells].sort(
+                        () => Math.random() - 0.5
+                    );
                     gsap.to(shuffledCells, {
                         backgroundColor: "transparent",
                         duration: 0.3,
-                        stagger: {
-                            each: 0.008,
-                            from: "random",
-                        },
+                        stagger: { each: 0.008, from: "random" },
                         ease: "power2.out",
                     });
                 }
             }, mainRef);
-
             return () => ctx.revert();
         },
         { scope: mainRef, dependencies: [gridCells] }
     );
 
+    // --- Text Scramble & Video (Unchanged) ---
     useEffect(() => {
-        // Text scramble effect
         const chars = "!@#$%^&*()_+-=[]{}|;:,.<>?ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         let iteration1 = 0;
         let iteration2 = 0;
-        
+
         const scrambleInterval = setInterval(() => {
-            setDisplayText1(() => 
-                finalText1.split("").map((char, index) => {
-                    if (index < iteration1) return finalText1[index];
-                    return chars[Math.floor(Math.random() * chars.length)];
-                }).join("")
+            setDisplayText1(() =>
+                finalText1
+                    .split("")
+                    .map((char, index) => {
+                        if (index < iteration1) return finalText1[index];
+                        return chars[Math.floor(Math.random() * chars.length)];
+                    })
+                    .join("")
             );
-
-            setDisplayText2(() => 
-                finalText2.split("").map((char, index) => {
-                    if (index < iteration2) return finalText2[index];
-                    return chars[Math.floor(Math.random() * chars.length)];
-                }).join("")
+            setDisplayText2(() =>
+                finalText2
+                    .split("")
+                    .map((char, index) => {
+                        if (index < iteration2) return finalText2[index];
+                        return chars[Math.floor(Math.random() * chars.length)];
+                    })
+                    .join("")
             );
-
-            if (iteration1 >= finalText1.length && iteration2 >= finalText2.length) {
+            if (
+                iteration1 >= finalText1.length &&
+                iteration2 >= finalText2.length
+            ) {
                 clearInterval(scrambleInterval);
             }
-
             iteration1 += 1 / 3;
             iteration2 += 1 / 3;
         }, 10);
-
         return () => clearInterval(scrambleInterval);
     }, []);
 
     useEffect(() => {
-        if (videoRef.current) {
-            videoRef.current.playbackRate = 0.5;
-        }
+        if (videoRef.current) videoRef.current.playbackRate = 0.5;
 
         const calculateGrid = () => {
             if (!gridRef.current) return;
-            const containerWidth = gridRef.current.offsetWidth;
-            const containerHeight = gridRef.current.offsetHeight;
+            const w = gridRef.current.offsetWidth;
+            const h = gridRef.current.offsetHeight;
             const columns = 10;
-            const cellSize = containerWidth / columns;
-            const rows = Math.ceil(containerHeight / cellSize);
-            const cells = [];
-            for (let i = 0; i < rows * columns; i++) {
-                cells.push(i);
-            }
-            setGridCells(cells);
+            const cellSize = w / columns;
+            const rows = Math.ceil(h / cellSize);
+            setGridCells(Array.from({ length: rows * columns }, (_, i) => i));
             gridRef.current.classList.add("bg-transparent");
         };
 
         calculateGrid();
-        window.addEventListener('resize', calculateGrid);
-
-        return () => {
-            window.removeEventListener('resize', calculateGrid);
-        };
+        window.addEventListener("resize", calculateGrid);
+        return () => window.removeEventListener("resize", calculateGrid);
     }, []);
 
     return (
         <>
-            <main ref={mainRef} className="relative backface-hidden" style={{WebkitFontSmoothing: "subpixel-antialiased", MozOsxFontSmoothing: "grayscale"}}>
+            <main
+                ref={mainRef}
+                className="relative backface-hidden"
+                style={{
+                    WebkitFontSmoothing: "subpixel-antialiased",
+                    MozOsxFontSmoothing: "grayscale",
+                }}
+            >
                 <div className="h-screen relative">
                     <video
                         ref={videoRef}
@@ -160,20 +153,45 @@ export default function Home() {
                         muted
                     />
                     <div className="z-20 h-screen absolute top-0 left-0 w-full p-16 flex items-end justify-between bg-black/60">
-                        
-                        {/* --- STABILIZED LINES (Fix applied here) --- */}
-                        <div className="absolute left-9 w-[1px] top-0 h-full bg-[rgb(66,68,83)]" style={hardwareAccel}></div>
-                        <div className="absolute right-9 w-[1px] top-0 h-full bg-[rgb(66,68,83)]" style={hardwareAccel}></div>
-                        <div className="absolute bottom-9 left-0 right-0 h-[1px] bg-[rgb(66,68,83)]" style={hardwareAccel}></div>
-                        <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-[rgb(66,68,83)]" style={hardwareAccel}></div>
+                        {/* Decorative Lines */}
+                        <div
+                            className="absolute left-9 w-[1px] top-0 h-full bg-[rgb(66,68,83)]"
+                            style={hardwareAccel}
+                        ></div>
+                        <div
+                            className="absolute right-9 w-[1px] top-0 h-full bg-[rgb(66,68,83)]"
+                            style={hardwareAccel}
+                        ></div>
+                        <div
+                            className="absolute bottom-9 left-0 right-0 h-[1px] bg-[rgb(66,68,83)]"
+                            style={hardwareAccel}
+                        ></div>
+                        <div
+                            className="absolute bottom-0 left-0 right-0 h-[1px] bg-[rgb(66,68,83)]"
+                            style={hardwareAccel}
+                        ></div>
+                        <div
+                            className="absolute bottom-9 left-9 h-[2px] w-3 bg-[#b7b9c5] -translate-x-1/2"
+                            style={hardwareAccel}
+                        ></div>
+                        <div
+                            className="absolute bottom-9 left-9 h-3 w-[2px] bg-[#b7b9c5] -translate-x-1/2 translate-y-1/2"
+                            style={hardwareAccel}
+                        ></div>
+                        <div
+                            className="absolute bottom-9 right-9 h-[2px] w-3 bg-[#b7b9c5] translate-x-1/2"
+                            style={hardwareAccel}
+                        ></div>
+                        <div
+                            className="absolute bottom-9 right-9 h-3 w-[2px] bg-[#b7b9c5] translate-x-1/2 translate-y-1/2"
+                            style={hardwareAccel}
+                        ></div>
 
-                        {/* --- STABILIZED TICKS --- */}
-                        <div className="absolute bottom-9 left-9 h-[2px] w-3 bg-[#b7b9c5] -translate-x-1/2" style={hardwareAccel}></div>
-                        <div className="absolute bottom-9 left-9 h-3 w-[2px] bg-[#b7b9c5] -translate-x-1/2 translate-y-1/2" style={hardwareAccel}></div>
-                        <div className="absolute bottom-9 right-9 h-[2px] w-3 bg-[#b7b9c5] translate-x-1/2" style={hardwareAccel}></div>
-                        <div className="absolute bottom-9 right-9 h-3 w-[2px] bg-[#b7b9c5] translate-x-1/2 translate-y-1/2" style={hardwareAccel}></div>
-
-                        <div ref={textRef} className="mb-6 font-family-grotesk text-5xl text-[#e9ede5] leading-14" style={hardwareAccel}>
+                        <div
+                            ref={textRef}
+                            className="mb-6 font-family-grotesk text-5xl text-[#e9ede5] leading-14"
+                            style={hardwareAccel}
+                        >
                             {displayText1}
                             <br />
                             {displayText2}
@@ -188,11 +206,15 @@ export default function Home() {
                             style={hardwareAccel}
                         />
                     </div>
-                    <div 
+                    <div
                         ref={gridRef}
                         className="z-10 h-screen absolute top-0 left-0 w-full overflow-hidden grid grid-cols-10 bg-[#0b0b0e]"
-                        style={{ 
-                            gridAutoRows: `${gridRef.current ? gridRef.current.offsetWidth / 10 : 0}px` 
+                        style={{
+                            gridAutoRows: `${
+                                gridRef.current
+                                    ? gridRef.current.offsetWidth / 10
+                                    : 0
+                            }px`,
                         }}
                     >
                         {gridCells.map((cell) => (
@@ -203,7 +225,11 @@ export default function Home() {
                         ))}
                     </div>
                 </div>
-                <div className="min-h-screen w-full bg-[#0b0b0e]"></div>
+                <div className="h-screen bg-[#0b0b0e] relative">
+                    <div className="absolute left-9 top-0 h-full w-px bg-[rgb(66,68,83)]"></div>
+                    <div className="absolute right-9 top-0 h-full w-px bg-[rgb(66,68,83)]"></div>
+                    <WaveParticles />
+                </div>
             </main>
         </>
     );
