@@ -8,7 +8,7 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber';
 const SEPARATION = 100;
 const AMOUNTX = 50; // Adjusted for screen width (Original was 100, can be heavy on some devices)
 const AMOUNTY = 50; // Adjusted for screen height (Original was 70)
-const PARTICLE_SIZE = 40; // Scale multiplier to match the visual size of the original canvas circles
+const PARTICLE_SIZE = 5; // Reduced particle size for less visual density
 
 // --- Texture Generation ---
 // Creates a simple circle texture to mimic the original 'context.arc' drawing
@@ -39,6 +39,39 @@ const Particles = () => {
   // Create a reusable object for calculations (avoids creating new objects every frame)
   const dummy = useMemo(() => new THREE.Object3D(), []);
   const circleTexture = useMemo(() => getCircleTexture(), []);
+  
+  // Create gradient colors with blue as dominant color
+  const colors = useMemo(() => {
+    const colorArray = new Float32Array(AMOUNTX * AMOUNTY * 3);
+    const blueBase = new THREE.Color(0x39b7f2); // rgb(57, 183, 242) - project blue
+    const cyanLight = new THREE.Color(0x5fd4ff); // lighter cyan-blue
+    const blueDark = new THREE.Color(0x1e90d4); // darker blue
+    
+    let i = 0;
+    for (let ix = 0; ix < AMOUNTX; ix++) {
+      for (let iy = 0; iy < AMOUNTY; iy++) {
+        // Create gradient based on position
+        const xFactor = ix / AMOUNTX;
+        const yFactor = iy / AMOUNTY;
+        
+        // Mix colors to create gradient (mostly blue with variations)
+        const color = new THREE.Color();
+        if (xFactor < 0.33) {
+          color.lerpColors(blueBase, cyanLight, yFactor);
+        } else if (xFactor < 0.66) {
+          color.copy(blueBase); // Pure project blue in the middle
+        } else {
+          color.lerpColors(blueBase, blueDark, yFactor);
+        }
+        
+        colorArray[i * 3] = color.r;
+        colorArray[i * 3 + 1] = color.g;
+        colorArray[i * 3 + 2] = color.b;
+        i++;
+      }
+    }
+    return colorArray;
+  }, []);
 
   // --- Animation Loop ---
   useFrame((state) => {
@@ -46,13 +79,13 @@ const Particles = () => {
 
     // 1. Camera Movement (Exact replication of legacy logic)
     // Original used pixels (mouseX). We use normalized pointer (-1 to +1) scaled up.
-    // We multiply by 1000 to match the scale of the scene (since SEPARATION is 100).
-    const targetX = state.pointer.x * 1000; 
-    const targetY = state.pointer.y * 1000;
+    // Reduced sensitivity by lowering multiplier from 1000 to 400
+    const targetX = state.pointer.x * 400; 
+    const targetY = state.pointer.y * 400;
 
-    // The '.05' is the easing factor from the original code
-    camera.position.x += (targetX - camera.position.x) * 0.05;
-    camera.position.y += (-targetY - camera.position.y) * 0.05;
+    // Reduced easing factor from 0.05 to 0.02 for more dampened movement
+    camera.position.x += (targetX - camera.position.x) * 0.02;
+    camera.position.y += (-targetY - camera.position.y) * 0.02;
     camera.lookAt(meshRef.current.position);
 
     // 2. Wave Animation
@@ -91,8 +124,8 @@ const Particles = () => {
     // Tell the GPU the positions have updated
     meshRef.current.instanceMatrix.needsUpdate = true;
     
-    // Increment the wave counter (original was 0.1)
-    count.current += 0.1;
+    // Reduced animation speed from 0.1 to 0.05 for slower movement
+    count.current += 0.02;
   });
 
   return (
@@ -101,11 +134,17 @@ const Particles = () => {
       args={[null, null, AMOUNTX * AMOUNTY]}
     >
       {/* Visual representation: A plane always facing the camera (Billboard) */}
-      <planeGeometry args={[PARTICLE_SIZE, PARTICLE_SIZE]} />
+      <planeGeometry args={[PARTICLE_SIZE, PARTICLE_SIZE]}>
+        <instancedBufferAttribute
+          attach="attributes-color"
+          args={[colors, 3]}
+        />
+      </planeGeometry>
       <meshBasicMaterial 
         map={circleTexture} 
-        color={0xe1e1e1} 
+        vertexColors={true}
         transparent={true}
+        opacity={0.8}
         depthWrite={false} // Prevents transparency sorting issues
         side={THREE.DoubleSide}
       />
@@ -115,10 +154,10 @@ const Particles = () => {
 
 export default function WaveScene() {
   return (
-    <div className='w-3/4 h-3/4 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none'>
+    <div className='w-3/4 h-3/4 absolute top-2/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none'>
       <Canvas
         camera={{ 
-          position: [0, 0, 1000], // Original Z position
+          position: [0, 0, 1500], // Zoomed out from 1000 to 1500 for wider view
           fov: 75, // Original was 120, but 75 looks better on modern wide screens. 
                    // Set to 120 if you want the exact "fish-eye" look.
           far: 100000 

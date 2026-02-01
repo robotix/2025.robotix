@@ -15,6 +15,11 @@ export default function Home() {
     const videoRef = useRef(null);
     const gridRef = useRef(null);
     const textRef = useRef(null);
+    const card1Ref = useRef(null);
+    const card2Ref = useRef(null);
+    const card3Ref = useRef(null);
+    const galleryRef = useRef(null);
+    const galleryItemsRef = useRef([]);
 
     const [gridCells, setGridCells] = useState([]);
     const [displayText1, setDisplayText1] = useState("");
@@ -62,7 +67,7 @@ export default function Home() {
                 if (gridRef.current) {
                     const cells = Array.from(gridRef.current.children);
                     const shuffledCells = [...cells].sort(
-                        () => Math.random() - 0.5
+                        () => Math.random() - 0.5,
                     );
                     gsap.to(shuffledCells, {
                         backgroundColor: "transparent",
@@ -74,7 +79,7 @@ export default function Home() {
             }, mainRef);
             return () => ctx.revert();
         },
-        { scope: mainRef, dependencies: [gridCells] }
+        { scope: mainRef, dependencies: [gridCells] },
     );
 
     // --- Text Scramble & Video (Unchanged) ---
@@ -91,7 +96,7 @@ export default function Home() {
                         if (index < iteration1) return finalText1[index];
                         return chars[Math.floor(Math.random() * chars.length)];
                     })
-                    .join("")
+                    .join(""),
             );
             setDisplayText2(() =>
                 finalText2
@@ -100,7 +105,7 @@ export default function Home() {
                         if (index < iteration2) return finalText2[index];
                         return chars[Math.floor(Math.random() * chars.length)];
                     })
-                    .join("")
+                    .join(""),
             );
             if (
                 iteration1 >= finalText1.length &&
@@ -131,6 +136,119 @@ export default function Home() {
         calculateGrid();
         window.addEventListener("resize", calculateGrid);
         return () => window.removeEventListener("resize", calculateGrid);
+    }, []);
+
+    // --- Card Hover Animations ---
+    useEffect(() => {
+        const cards = [card1Ref.current, card2Ref.current, card3Ref.current];
+
+        cards.forEach((card, index) => {
+            if (!card) return;
+
+            const handleMouseEnter = (e) => {
+                const cardRect = card.getBoundingClientRect();
+                const cardCenterX = cardRect.left + cardRect.width / 2;
+                const cardCenterY = cardRect.top + cardRect.height / 2;
+
+                // Lift and tilt effect based on position
+                gsap.to(card, {
+                    scale: 1.03,
+                    rotationY: (e.clientX - cardCenterX) * 0.02,
+                    rotationX: (cardCenterY - e.clientY) * 0.02,
+                    z: 50,
+                    duration: 0.6,
+                    ease: "power2.out",
+                });
+
+                // Glow effect
+                gsap.to(card, {
+                    boxShadow:
+                        "0 0 15px rgba(57, 183, 242, 0.2), 0 10px 25px rgba(0, 0, 0, 0.2)",
+                    borderColor: "#39b7f2",
+                    duration: 0.6,
+                    ease: "power2.out",
+                });
+
+                // Animate image with slight rotation
+                const img = card.querySelector("img");
+                if (img) {
+                    gsap.to(img, {
+                        scale: 1.05,
+                        rotation: index % 2 === 0 ? 5 : -5,
+                        duration: 0.6,
+                        ease: "power2.out",
+                    });
+                }
+
+                // Text glitch effect on title
+                const title = card.querySelector("h3");
+                if (title) {
+                    gsap.to(title, {
+                        textShadow: "0 0 5px rgba(57, 183, 242, 0.5)",
+                        duration: 0.3,
+                        ease: "power2.out",
+                    });
+                }
+            };
+
+            const handleMouseMove = (e) => {
+                const cardRect = card.getBoundingClientRect();
+                const cardCenterX = cardRect.left + cardRect.width / 2;
+                const cardCenterY = cardRect.top + cardRect.height / 2;
+
+                // Dynamic tilt based on mouse position
+                gsap.to(card, {
+                    rotationY: (e.clientX - cardCenterX) * 0.02,
+                    rotationX: (cardCenterY - e.clientY) * 0.02,
+                    duration: 0.3,
+                    ease: "power1.out",
+                });
+            };
+
+            const handleMouseLeave = () => {
+                // Reset all animations
+                gsap.to(card, {
+                    scale: 1,
+                    rotationY: 0,
+                    rotationX: 0,
+                    z: 0,
+                    boxShadow: "none",
+                    borderColor: "#424453",
+                    duration: 0.6,
+                    ease: "power2.inOut",
+                });
+
+                const img = card.querySelector("img");
+                if (img) {
+                    gsap.to(img, {
+                        scale: 1,
+                        rotation: 0,
+                        duration: 0.6,
+                        ease: "power2.inOut",
+                    });
+                }
+
+                const title = card.querySelector("h3");
+                if (title) {
+                    gsap.to(title, {
+                        textShadow: "none",
+                        duration: 0.3,
+                        ease: "power2.inOut",
+                    });
+                }
+            };
+
+            card.addEventListener("mouseenter", handleMouseEnter);
+            card.addEventListener("mousemove", handleMouseMove);
+            card.addEventListener("mouseleave", handleMouseLeave);
+
+            // Cleanup
+            return () => {
+                card.removeEventListener("mouseenter", handleMouseEnter);
+                card.removeEventListener("mousemove", handleMouseMove);
+                card.removeEventListener("mouseleave", handleMouseLeave);
+            };
+        });
     }, []);
 
     return (
@@ -225,10 +343,266 @@ export default function Home() {
                         ))}
                     </div>
                 </div>
-                <div className="h-screen bg-[#0b0b0e] relative">
+                <div className="min-h-screen bg-[#0b0b0e] relative">
+                    <div className="pt-14 pl-14 mb-6 font-family-grotesk-mono text-[#838698] text-sm uppercase">
+                        Events
+                    </div>
+                    <div className="font-family-grotesk text-4xl pl-14 max-w-1/3 text-white">
+                        We believe in sharing our knowledge
+                    </div>
+                    <div className="flex justify-center px-10 py-20 relative z-20 pointer-events-none">
+                        <div
+                            ref={card1Ref}
+                            className="border-[#424453] border-[1.5px] bg-[#17192160] rounded-sm p-6 flex flex-col items-center w-[250px] cursor-pointer backdrop-blur-xs pointer-events-auto"
+                            style={{
+                                transformStyle: "preserve-3d",
+                                perspective: "1000px",
+                                ...hardwareAccel,
+                            }}
+                        >
+                            <Image
+                                src="/kraig.png"
+                                alt="KRAIG"
+                                width={175}
+                                height={175}
+                            />
+                            <h3 className="font-family-grotesk text-2xl text-[#e9ede5] mt-6 mb-3">
+                                K.R.A.I.G.
+                            </h3>
+                            <p className="text-sm text-[#b7b9c5] text-center leading-relaxed">
+                                Kickstart your robotics journey with hands-on
+                                fundamentals
+                            </p>
+                        </div>
+                        <div
+                            ref={card2Ref}
+                            className="mx-10 border-[#424453] border-[1.5px] bg-[#17192160] rounded-sm p-6 flex flex-col items-center w-[250px] cursor-pointer backdrop-blur-xs pointer-events-auto"
+                            style={{
+                                transformStyle: "preserve-3d",
+                                perspective: "1000px",
+                                ...hardwareAccel,
+                            }}
+                        >
+                            <Image
+                                src="/winterschool.png"
+                                alt="Winter School"
+                                width={175}
+                                height={175}
+                            />
+                            <h3 className="font-family-grotesk text-2xl text-[#e9ede5] mt-6 mb-3">
+                                Winter School
+                            </h3>
+                            <p className="text-sm text-[#b7b9c5] text-center leading-relaxed">
+                                Comprehensive workshop series for advanced
+                                robotics projects
+                            </p>
+                        </div>
+                        <div
+                            ref={card3Ref}
+                            className="border-[#424453] border-[1.5px] bg-[#17192160] rounded-sm p-6 flex flex-col items-center w-[250px] cursor-pointer backdrop-blur-xs pointer-events-auto"
+                            style={{
+                                transformStyle: "preserve-3d",
+                                perspective: "1000px",
+                                ...hardwareAccel,
+                            }}
+                        >
+                            <Image
+                                src="/makerspace.png"
+                                alt="Makerspace"
+                                width={175}
+                                height={175}
+                            />
+                            <h3 className="font-family-grotesk text-2xl text-[#e9ede5] mt-6 mb-3">
+                                Makerspace
+                            </h3>
+                            <p className="text-sm text-[#b7b9c5] text-center leading-relaxed">
+                                Collaborative workspace for prototyping and
+                                innovation
+                            </p>
+                        </div>
+                    </div>
+                    <div className="absolute bottom-0 left-0 right-0 h-px bg-[rgb(66,68,83)]"></div>
                     <div className="absolute left-9 top-0 h-full w-px bg-[rgb(66,68,83)]"></div>
                     <div className="absolute right-9 top-0 h-full w-px bg-[rgb(66,68,83)]"></div>
                     <WaveParticles />
+                </div>
+                <div className="min-h-screen bg-[#0b0b0e] relative px-24 py-16">
+                    <div className="uppercase font-family-grotesk-mono text-[#838698] text-md text-center mb-4">Our</div>
+                    <div className="font-family-grotesk text-8xl text-center text-white uppercase mb-20">B<span className="font-family-grotesk-screen">o</span>ts</div>
+                    
+                    {/* Gallery Grid */}
+                    <div 
+                        ref={galleryRef}
+                        className="grid grid-cols-12 gap-6 max-w-7xl mx-auto"
+                        style={{ perspective: "1000px" }}
+                    >
+                        {/* Large featured image - spans 2 rows */}
+                        <div 
+                            ref={(el) => galleryItemsRef.current[0] = el}
+                            className="col-span-5 row-span-2 relative overflow-hidden rounded-sm cursor-pointer border border-[#424453]"
+                            style={{ 
+                                transformStyle: "preserve-3d",
+                                boxShadow: "0 8px 20px rgba(0, 0, 0, 0.3)",
+                                ...hardwareAccel 
+                            }}
+                        >
+                            <div className="relative h-[600px] bg-gradient-to-br from-[#171921] to-[#0b0b0e]">
+                                <Image 
+                                    src="/bots/quadruped.jpg" 
+                                    alt="Quadruped Robot" 
+                                    fill
+                                    sizes="(max-width: 768px) 100vw, 40vw"
+                                    quality={85}
+                                    className="object-cover"
+                                />
+                                <div className="absolute inset-0 flex items-end justify-center bg-gradient-to-t from-[#0b0b0e]/90 via-[#0b0b0e]/40 to-transparent pb-8">
+                                    <div className="text-center">
+                                        <div className="font-family-grotesk text-2xl text-[#e9ede5]">Quadruped Robot</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Tall image */}
+                        <div 
+                            ref={(el) => galleryItemsRef.current[1] = el}
+                            className="col-span-4 row-span-2 relative overflow-hidden rounded-sm cursor-pointer border border-[#424453]"
+                            style={{ 
+                                transformStyle: "preserve-3d",
+                                boxShadow: "0 8px 20px rgba(0, 0, 0, 0.3)",
+                                ...hardwareAccel 
+                            }}
+                        >
+                            <div className="relative h-[600px] bg-gradient-to-br from-[#1a1c2e] to-[#0b0b0e]">
+                                <Image 
+                                    src="/bots/spider.jpg" 
+                                    alt="Spider Robot" 
+                                    fill
+                                    sizes="(max-width: 768px) 100vw, 35vw"
+                                    quality={85}
+                                    className="object-cover"
+                                />
+                                <div className="absolute inset-0 flex items-end justify-center bg-gradient-to-t from-[#0b0b0e]/90 via-[#0b0b0e]/40 to-transparent pb-8">
+                                    <div className="text-center">
+                                        <div className="font-family-grotesk text-xl text-[#e9ede5]">Spider Robot</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Small square */}
+                        <div 
+                            ref={(el) => galleryItemsRef.current[2] = el}
+                            className="col-span-3 relative overflow-hidden rounded-sm cursor-pointer border border-[#424453]"
+                            style={{ 
+                                transformStyle: "preserve-3d",
+                                boxShadow: "0 8px 20px rgba(0, 0, 0, 0.3)",
+                                ...hardwareAccel 
+                            }}
+                        >
+                            <div className="relative h-[290px] bg-gradient-to-br from-[#151721] to-[#0b0b0e]">
+                                <Image 
+                                    src="/bots/gripper.png" 
+                                    alt="Gripper Bot" 
+                                    fill
+                                    sizes="(max-width: 768px) 100vw, 25vw"
+                                    quality={85}
+                                    className="object-cover"
+                                />
+                                <div className="absolute inset-0 flex items-end justify-center bg-gradient-to-t from-[#0b0b0e]/90 via-[#0b0b0e]/40 to-transparent pb-6">
+                                    <div className="text-center">
+                                        <div className="font-family-grotesk text-lg text-[#e9ede5]">Gripper Bot</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Wide horizontal */}
+                        <div 
+                            ref={(el) => galleryItemsRef.current[3] = el}
+                            className="col-span-3 relative overflow-hidden rounded-sm cursor-pointer border border-[#424453]"
+                            style={{ 
+                                transformStyle: "preserve-3d",
+                                boxShadow: "0 8px 20px rgba(0, 0, 0, 0.3)",
+                                ...hardwareAccel 
+                            }}
+                        >
+                            <div className="relative h-[290px] bg-gradient-to-br from-[#1c1e2d] to-[#0b0b0e]">
+                                <Image 
+                                    src="/bots/omnidirectional.png" 
+                                    alt="Omnidirectional Bot" 
+                                    fill
+                                    sizes="(max-width: 768px) 100vw, 25vw"
+                                    quality={85}
+                                    className="object-cover"
+                                />
+                                <div className="absolute inset-0 flex items-end justify-center bg-gradient-to-t from-[#0b0b0e]/90 via-[#0b0b0e]/40 to-transparent pb-6">
+                                    <div className="text-center">
+                                        <div className="font-family-grotesk text-lg text-[#e9ede5]">Omnidirectional</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Medium rectangle */}
+                        <div 
+                            ref={(el) => galleryItemsRef.current[4] = el}
+                            className="col-span-7 relative overflow-hidden rounded-sm cursor-pointer border border-[#424453]"
+                            style={{ 
+                                transformStyle: "preserve-3d",
+                                boxShadow: "0 8px 20px rgba(0, 0, 0, 0.3)",
+                                ...hardwareAccel 
+                            }}
+                        >
+                            <div className="relative h-[380px] bg-gradient-to-br from-[#181a28] to-[#0b0b0e]">
+                                <Image 
+                                    src="/bots/telepresence.jpg" 
+                                    alt="Telepresence Robot" 
+                                    fill
+                                    sizes="(max-width: 768px) 100vw, 60vw"
+                                    quality={85}
+                                    className="object-cover"
+                                />
+                                <div className="absolute inset-0 flex items-end justify-center bg-gradient-to-t from-[#0b0b0e]/90 via-[#0b0b0e]/40 to-transparent pb-8">
+                                    <div className="text-center">
+                                        <div className="font-family-grotesk text-2xl text-[#e9ede5]">Telepresence Robot</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Tall narrow */}
+                        <div 
+                            ref={(el) => galleryItemsRef.current[5] = el}
+                            className="col-span-5 row-span-1 relative overflow-hidden rounded-sm cursor-pointer border border-[#424453]"
+                            style={{ 
+                                transformStyle: "preserve-3d",
+                                boxShadow: "0 8px 20px rgba(0, 0, 0, 0.3)",
+                                ...hardwareAccel 
+                            }}
+                        >
+                            <div className="relative h-[380px] bg-gradient-to-br from-[#16182a] to-[#0b0b0e]">
+                                <Image 
+                                    src="/bots/flex.jpg" 
+                                    alt="Flex Robot" 
+                                    fill
+                                    sizes="(max-width: 768px) 100vw, 40vw"
+                                    quality={85}
+                                    className="object-cover"
+                                />
+                                <div className="absolute inset-0 flex items-end justify-center bg-gradient-to-t from-[#0b0b0e]/90 via-[#0b0b0e]/40 to-transparent pb-8">
+                                    <div className="text-center">
+                                        <div className="font-family-grotesk text-xl text-[#e9ede5]">Flex Robot</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    {/* Decorative lines */}
+                    <div className="absolute left-9 top-0 h-full w-px bg-[rgb(66,68,83)]"></div>
+                    <div className="absolute right-9 top-0 h-full w-px bg-[rgb(66,68,83)]"></div>
                 </div>
             </main>
         </>
