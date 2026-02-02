@@ -7,6 +7,7 @@ import Image from "next/image";
 import { teamData } from "@/data/team";
 import { alumniData } from "@/data/alumni";
 import { ArrowRight } from "lucide-react";
+import TeamMemberCard from "@/components/TeamMemberCard";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -307,59 +308,13 @@ export default function About() {
                         </h2>
                         <div className="mt-12 grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-8 justify-items-center">
                             {teamData[0].team.map((member, index) => (
-                                <div
+                                <TeamMemberCard
                                     key={index}
+                                    member={member}
+                                    imagePath={`/team/coordinators/${member.thumbnailUrl}`}
                                     onMouseMove={handleCardMouseMove}
                                     onMouseLeave={handleCardMouseLeave}
-                                    className="w-full max-w-[280px] flex flex-col gap-4 group cursor-default"
-                                >
-                                    {/* Image Container with 3D Tilt & Spotlight */}
-                                    <div className="tilt-container relative w-full aspect-square rounded-md overflow-hidden bg-[#242733] will-change-transform">
-                                        <Image
-                                            src={`/team/coordinators/${member.thumbnailUrl}`}
-                                            alt={member.name}
-                                            fill
-                                            className="object-cover" // Removed hover scale here to avoid conflict with tilt
-                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                        />
-
-                                        {/* Spotlight Overlay: Reduced radius (350px) and subtle blue */}
-                                        <div
-                                            className="shine-overlay absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                                            style={{
-                                                background:
-                                                    "radial-gradient(350px circle at var(--x, 50%) var(--y, 50%), rgba(57, 183, 242, 0.15), transparent 40%)",
-                                            }}
-                                        ></div>
-                                    </div>
-
-                                    <p className="font-family-apk text-lg text-[#e9ede5]">{`${member.name} ${member.surname}`}</p>
-                                    <div className="flex flex-wrap">
-                                        {member.social.map(
-                                            (socialLink, idx) =>
-                                                socialLink.link && (
-                                                    <a
-                                                        key={idx}
-                                                        href={
-                                                            socialLink.name ==
-                                                            "email"
-                                                                ? `mailto:${socialLink.link}`
-                                                                : socialLink.link
-                                                        }
-                                                        target="_blank"
-                                                        className="group/icon flex shrink-0 items-center gap-4 mr-6 mb-2 text-[#e9ede5] transition-colors duration-300 ease-in-out hover:text-[#39b7f2]"
-                                                    >
-                                                        <span className="uppercase font-family-grotesk-mono font-bold text-sm">
-                                                            {socialLink.name}
-                                                        </span>
-                                                        <span className="h-9 w-9 flex items-center justify-center text-sm border border-[#242733] rounded-sm">
-                                                            <ArrowRight className="-rotate-45 group-hover/icon:rotate-0 transition-all duration-300 ease-in-out" />
-                                                        </span>
-                                                    </a>
-                                                )
-                                        )}
-                                    </div>
-                                </div>
+                                />
                             ))}
                         </div>
                         <h2 className="font-family-grotesk text-[#e9ede5] text-4xl mt-9">
@@ -367,64 +322,14 @@ export default function About() {
                         </h2>
                         <div className="mt-12 grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-8 justify-items-center">
                             {teamData[1].team.map((member, index) => (
-                                <div
+                                <TeamMemberCard
                                     key={index}
+                                    member={member}
+                                    imagePath={`/team/heads/${member.thumbnailUrl}`}
                                     onMouseMove={handleCardMouseMove}
                                     onMouseLeave={handleCardMouseLeave}
-                                    className="w-full max-w-[280px] flex flex-col group cursor-default"
-                                >
-                                    {/* Image Container with 3D Tilt & Spotlight */}
-                                    <div className="tilt-container relative w-full aspect-square rounded-md overflow-hidden bg-[#242733] will-change-transform mb-4">
-                                        <Image
-                                            src={`/team/heads/${member.thumbnailUrl}`}
-                                            alt={member.name}
-                                            fill
-                                            className="object-cover" // Removed hover scale here to avoid conflict with tilt
-                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                        />
-
-                                        {/* Spotlight Overlay: Reduced radius (350px) and subtle blue */}
-                                        <div
-                                            className="shine-overlay absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                                            style={{
-                                                background:
-                                                    "radial-gradient(350px circle at var(--x, 50%) var(--y, 50%), rgba(57, 183, 242, 0.15), transparent 40%)",
-                                            }}
-                                        ></div>
-                                    </div>
-
-                                    <p className="font-family-apk text-lg text-[#e9ede5]">{`${member.name} ${member.surname}`}</p>
-                                    {member.tag && (
-                                        <p className="text-[#838698] font-family-apk text-lg">
-                                            {member.tag}
-                                        </p>
-                                    )}
-                                    <div className="flex flex-wrap mt-4">
-                                        {member.social.map(
-                                            (socialLink, idx) =>
-                                                socialLink.link && (
-                                                    <a
-                                                        key={idx}
-                                                        href={
-                                                            socialLink.name ==
-                                                            "email"
-                                                                ? `mailto:${socialLink.link}`
-                                                                : socialLink.link
-                                                        }
-                                                        target="_blank"
-                                                        className="group/icon flex shrink-0 items-center gap-4 mr-6 mb-2 text-[#e9ede5] transition-colors duration-300 ease-in-out hover:text-[#39b7f2]"
-                                                    >
-                                                        <span className="uppercase font-family-grotesk-mono font-bold text-sm">
-                                                            {socialLink.name}
-                                                        </span>
-                                                        <span className="h-9 w-9 flex items-center justify-center text-sm border border-[#242733] rounded-sm">
-                                                            <ArrowRight className="-rotate-45 group-hover/icon:rotate-0 transition-all duration-300 ease-in-out" />
-                                                        </span>
-                                                    </a>
-                                                )
-                                        )}
-                                    </div>
-                                </div>
+                                    showTag={true}
+                                />
                             ))}
                         </div>
                         <h2 className="font-family-grotesk text-[#e9ede5] text-4xl mt-9">
@@ -432,57 +337,13 @@ export default function About() {
                         </h2>
                         <div className="mt-12 grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-8 justify-items-center">
                             {teamData[2].team.map((member, index) => (
-                                <div
+                                <TeamMemberCard
                                     key={index}
+                                    member={member}
+                                    imagePath={`/team/subheads/${member.thumbnailUrl}`}
                                     onMouseMove={handleCardMouseMove}
                                     onMouseLeave={handleCardMouseLeave}
-                                    className="w-full max-w-[280px] flex flex-col gap-4 group cursor-default"
-                                >
-                                    <div className="tilt-container relative w-full aspect-square rounded-md overflow-hidden bg-[#242733] will-change-transform">
-                                        <Image
-                                            src={`/team/subheads/${member.thumbnailUrl}`}
-                                            alt={member.name}
-                                            fill
-                                            className="object-cover" // Removed hover scale here to avoid conflict with tilt
-                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                        />
-
-                                        <div
-                                            className="shine-overlay absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                                            style={{
-                                                background:
-                                                    "radial-gradient(350px circle at var(--x, 50%) var(--y, 50%), rgba(57, 183, 242, 0.15), transparent 40%)",
-                                            }}
-                                        ></div>
-                                    </div>
-
-                                    <p className="font-family-apk text-lg text-[#e9ede5]">{`${member.name} ${member.surname}`}</p>
-                                    <div className="flex flex-wrap">
-                                        {member.social.map(
-                                            (socialLink, idx) =>
-                                                socialLink.link && (
-                                                    <a
-                                                        key={idx}
-                                                        href={
-                                                            socialLink.name ==
-                                                            "email"
-                                                                ? `mailto:${socialLink.link}`
-                                                                : socialLink.link
-                                                        }
-                                                        target="_blank"
-                                                        className="group/icon flex shrink-0 items-center gap-4 mr-6 mb-2 text-[#e9ede5] transition-colors duration-300 ease-in-out hover:text-[#39b7f2]"
-                                                    >
-                                                        <span className="uppercase font-family-grotesk-mono font-bold text-sm">
-                                                            {socialLink.name}
-                                                        </span>
-                                                        <span className="h-9 w-9 flex items-center justify-center text-sm border border-[#242733] rounded-sm">
-                                                            <ArrowRight className="-rotate-45 group-hover/icon:rotate-0 transition-all duration-300 ease-in-out" />
-                                                        </span>
-                                                    </a>
-                                                )
-                                        )}
-                                    </div>
-                                </div>
+                                />
                             ))}
                         </div>
                         <h2 className="font-family-grotesk text-[#e9ede5] text-4xl mt-9">
@@ -502,57 +363,13 @@ export default function About() {
                         </ul>
                         <div className="mt-12 grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-8 justify-items-center">
                             {(alumniData.find(alumnus => alumnus.title == activeTab)?.team || []).map((member, index) => (
-                                <div
+                                <TeamMemberCard
                                     key={index}
+                                    member={member}
+                                    imagePath={`/alumni/${activeTab}/${member.thumbnailUrl}`}
                                     onMouseMove={handleCardMouseMove}
                                     onMouseLeave={handleCardMouseLeave}
-                                    className="w-full max-w-[280px] flex flex-col gap-4 group cursor-default"
-                                >
-                                    <div className="tilt-container relative w-full aspect-square rounded-md overflow-hidden bg-[#242733] will-change-transform">
-                                        <Image
-                                            src={`/alumni/${activeTab}/${member.thumbnailUrl}`}
-                                            alt={member.name}
-                                            fill
-                                            className="object-cover"
-                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                        />
-                                        <div
-                                            className="shine-overlay absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                                            style={{
-                                                background:
-                                                    "radial-gradient(350px circle at var(--x, 50%) var(--y, 50%), rgba(57, 183, 242, 0.15), transparent 40%)",
-                                            }}
-                                        ></div>
-                                    </div>
-                                    <p className="font-family-apk text-lg text-[#e9ede5]">{member.name}{member.surname ? ` ${member.surname}` : ""}</p>
-                                    {member.social && member.social.length > 0 && (
-                                        <div className="flex flex-wrap">
-                                            {member.social.map(
-                                                (socialLink, idx) =>
-                                                    socialLink.link && (
-                                                        <a
-                                                            key={idx}
-                                                            href={
-                                                                socialLink.name ==
-                                                                "email"
-                                                                    ? `mailto:${socialLink.link}`
-                                                                    : socialLink.link
-                                                            }
-                                                            target="_blank"
-                                                            className="group/icon flex shrink-0 items-center gap-4 mr-6 mb-2 text-[#e9ede5] transition-colors duration-300 ease-in-out hover:text-[#39b7f2]"
-                                                        >
-                                                            <span className="uppercase font-family-grotesk-mono font-bold text-sm">
-                                                                {socialLink.name}
-                                                            </span>
-                                                            <span className="h-9 w-9 flex items-center justify-center text-sm border border-[#242733] rounded-sm">
-                                                                <ArrowRight className="-rotate-45 group-hover/icon:rotate-0 transition-all duration-300 ease-in-out" />
-                                                            </span>
-                                                        </a>
-                                                    )
-                                            )}
-                                        </div>
-                                    )}
-                                </div>
+                                />
                             ))}
                         </div>
                     </div>

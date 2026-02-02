@@ -6,6 +6,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import WaveParticles from "../components/WaveParticles";
+import GalleryCard from "../components/GalleryCard";
+import { botsData } from "../data/bots";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -251,6 +253,42 @@ export default function Home() {
         });
     }, []);
 
+    // --- Gallery Hover Animations ---
+    useEffect(() => {
+        const items = galleryItemsRef.current.filter(Boolean);
+
+        items.forEach((item) => {
+            if (!item) return;
+
+            const img = item.querySelector("img");
+            if (!img) return;
+
+            const handleMouseEnter = () => {
+                gsap.to(img, {
+                    scale: 1.1,
+                    duration: 0.6,
+                    ease: "power2.out",
+                });
+            };
+
+            const handleMouseLeave = () => {
+                gsap.to(img, {
+                    scale: 1,
+                    duration: 0.6,
+                    ease: "power2.inOut",
+                });
+            };
+
+            item.addEventListener("mouseenter", handleMouseEnter);
+            item.addEventListener("mouseleave", handleMouseLeave);
+
+            return () => {
+                item.removeEventListener("mouseenter", handleMouseEnter);
+                item.removeEventListener("mouseleave", handleMouseLeave);
+            };
+        });
+    }, []);
+
     return (
         <>
             <main
@@ -427,177 +465,28 @@ export default function Home() {
                     <WaveParticles />
                 </div>
                 <div className="min-h-screen bg-[#0b0b0e] relative px-24 py-16">
-                    <div className="uppercase font-family-grotesk-mono text-[#838698] text-md text-center mb-4">Our</div>
-                    <div className="font-family-grotesk text-8xl text-center text-white uppercase mb-20">B<span className="font-family-grotesk-screen">o</span>ts</div>
-                    
+                    <div className="uppercase font-family-grotesk-mono text-[#838698] text-md text-center mb-4">
+                        Our
+                    </div>
+                    <div className="font-family-grotesk text-8xl text-center text-white uppercase mb-20">
+                        B<span className="font-family-grotesk-screen">o</span>ts
+                    </div>
+
                     {/* Gallery Grid */}
-                    <div 
+                    <div
                         ref={galleryRef}
                         className="grid grid-cols-12 gap-6 max-w-7xl mx-auto"
                         style={{ perspective: "1000px" }}
                     >
-                        {/* Large featured image - spans 2 rows */}
-                        <div 
-                            ref={(el) => galleryItemsRef.current[0] = el}
-                            className="col-span-5 row-span-2 relative overflow-hidden rounded-sm cursor-pointer border border-[#424453]"
-                            style={{ 
-                                transformStyle: "preserve-3d",
-                                boxShadow: "0 8px 20px rgba(0, 0, 0, 0.3)",
-                                ...hardwareAccel 
-                            }}
-                        >
-                            <div className="relative h-[600px] bg-gradient-to-br from-[#171921] to-[#0b0b0e]">
-                                <Image 
-                                    src="/bots/quadruped.jpg" 
-                                    alt="Quadruped Robot" 
-                                    fill
-                                    sizes="(max-width: 768px) 100vw, 40vw"
-                                    quality={85}
-                                    className="object-cover"
-                                />
-                                <div className="absolute inset-0 flex items-end justify-center bg-gradient-to-t from-[#0b0b0e]/90 via-[#0b0b0e]/40 to-transparent pb-8">
-                                    <div className="text-center">
-                                        <div className="font-family-grotesk text-2xl text-[#e9ede5]">Quadruped Robot</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Tall image */}
-                        <div 
-                            ref={(el) => galleryItemsRef.current[1] = el}
-                            className="col-span-4 row-span-2 relative overflow-hidden rounded-sm cursor-pointer border border-[#424453]"
-                            style={{ 
-                                transformStyle: "preserve-3d",
-                                boxShadow: "0 8px 20px rgba(0, 0, 0, 0.3)",
-                                ...hardwareAccel 
-                            }}
-                        >
-                            <div className="relative h-[600px] bg-gradient-to-br from-[#1a1c2e] to-[#0b0b0e]">
-                                <Image 
-                                    src="/bots/spider.jpg" 
-                                    alt="Spider Robot" 
-                                    fill
-                                    sizes="(max-width: 768px) 100vw, 35vw"
-                                    quality={85}
-                                    className="object-cover"
-                                />
-                                <div className="absolute inset-0 flex items-end justify-center bg-gradient-to-t from-[#0b0b0e]/90 via-[#0b0b0e]/40 to-transparent pb-8">
-                                    <div className="text-center">
-                                        <div className="font-family-grotesk text-xl text-[#e9ede5]">Spider Robot</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Small square */}
-                        <div 
-                            ref={(el) => galleryItemsRef.current[2] = el}
-                            className="col-span-3 relative overflow-hidden rounded-sm cursor-pointer border border-[#424453]"
-                            style={{ 
-                                transformStyle: "preserve-3d",
-                                boxShadow: "0 8px 20px rgba(0, 0, 0, 0.3)",
-                                ...hardwareAccel 
-                            }}
-                        >
-                            <div className="relative h-[290px] bg-gradient-to-br from-[#151721] to-[#0b0b0e]">
-                                <Image 
-                                    src="/bots/gripper.png" 
-                                    alt="Gripper Bot" 
-                                    fill
-                                    sizes="(max-width: 768px) 100vw, 25vw"
-                                    quality={85}
-                                    className="object-cover"
-                                />
-                                <div className="absolute inset-0 flex items-end justify-center bg-gradient-to-t from-[#0b0b0e]/90 via-[#0b0b0e]/40 to-transparent pb-6">
-                                    <div className="text-center">
-                                        <div className="font-family-grotesk text-lg text-[#e9ede5]">Gripper Bot</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Wide horizontal */}
-                        <div 
-                            ref={(el) => galleryItemsRef.current[3] = el}
-                            className="col-span-3 relative overflow-hidden rounded-sm cursor-pointer border border-[#424453]"
-                            style={{ 
-                                transformStyle: "preserve-3d",
-                                boxShadow: "0 8px 20px rgba(0, 0, 0, 0.3)",
-                                ...hardwareAccel 
-                            }}
-                        >
-                            <div className="relative h-[290px] bg-gradient-to-br from-[#1c1e2d] to-[#0b0b0e]">
-                                <Image 
-                                    src="/bots/omnidirectional.png" 
-                                    alt="Omnidirectional Bot" 
-                                    fill
-                                    sizes="(max-width: 768px) 100vw, 25vw"
-                                    quality={85}
-                                    className="object-cover"
-                                />
-                                <div className="absolute inset-0 flex items-end justify-center bg-gradient-to-t from-[#0b0b0e]/90 via-[#0b0b0e]/40 to-transparent pb-6">
-                                    <div className="text-center">
-                                        <div className="font-family-grotesk text-lg text-[#e9ede5]">Omnidirectional</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Medium rectangle */}
-                        <div 
-                            ref={(el) => galleryItemsRef.current[4] = el}
-                            className="col-span-7 relative overflow-hidden rounded-sm cursor-pointer border border-[#424453]"
-                            style={{ 
-                                transformStyle: "preserve-3d",
-                                boxShadow: "0 8px 20px rgba(0, 0, 0, 0.3)",
-                                ...hardwareAccel 
-                            }}
-                        >
-                            <div className="relative h-[380px] bg-gradient-to-br from-[#181a28] to-[#0b0b0e]">
-                                <Image 
-                                    src="/bots/telepresence.jpg" 
-                                    alt="Telepresence Robot" 
-                                    fill
-                                    sizes="(max-width: 768px) 100vw, 60vw"
-                                    quality={85}
-                                    className="object-cover"
-                                />
-                                <div className="absolute inset-0 flex items-end justify-center bg-gradient-to-t from-[#0b0b0e]/90 via-[#0b0b0e]/40 to-transparent pb-8">
-                                    <div className="text-center">
-                                        <div className="font-family-grotesk text-2xl text-[#e9ede5]">Telepresence Robot</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Tall narrow */}
-                        <div 
-                            ref={(el) => galleryItemsRef.current[5] = el}
-                            className="col-span-5 row-span-1 relative overflow-hidden rounded-sm cursor-pointer border border-[#424453]"
-                            style={{ 
-                                transformStyle: "preserve-3d",
-                                boxShadow: "0 8px 20px rgba(0, 0, 0, 0.3)",
-                                ...hardwareAccel 
-                            }}
-                        >
-                            <div className="relative h-[380px] bg-gradient-to-br from-[#16182a] to-[#0b0b0e]">
-                                <Image 
-                                    src="/bots/flex.jpg" 
-                                    alt="Flex Robot" 
-                                    fill
-                                    sizes="(max-width: 768px) 100vw, 40vw"
-                                    quality={85}
-                                    className="object-cover"
-                                />
-                                <div className="absolute inset-0 flex items-end justify-center bg-gradient-to-t from-[#0b0b0e]/90 via-[#0b0b0e]/40 to-transparent pb-8">
-                                    <div className="text-center">
-                                        <div className="font-family-grotesk text-xl text-[#e9ede5]">Flex Robot</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+                        {botsData.map((bot, index) => (
+                            <GalleryCard
+                                key={bot.id}
+                                bot={bot}
+                                index={index}
+                                galleryItemRef={(el) => (galleryItemsRef.current[index] = el)}
+                                hardwareAccel={hardwareAccel}
+                            />
+                        ))}
                     </div>
 
                     {/* Decorative lines */}

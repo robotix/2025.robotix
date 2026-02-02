@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import faq from "@/data/faq";
-import { ChevronDown } from "lucide-react";
+import FaqAccordion from "@/components/FaqAccordion";
 
 export default function Faqs() {
     const [displayText, setDisplayText] = useState("");
@@ -48,36 +48,13 @@ export default function Faqs() {
             
             <div className="max-w-6xl mx-auto space-y-4">
                 {faq.map((item, index) => (
-                    <div 
+                    <FaqAccordion
                         key={index}
-                        className="overflow-hidden transition-all duration-300 group"
-                    >
-                        <button
-                            onClick={() => toggleAccordion(index)}
-                            className="w-full flex items-center justify-between p-6 text-left cursor-pointer"
-                        >
-                            <span className="font-family-apk text-2xl text-[#e9ede5] pr-8">
-                                {item.question}
-                            </span>
-                            <span className="border border-[#b7b9c5] group-hover:border-[#39b7f2] rounded-sm transition-colors duration-300 p-1">
-                            <ChevronDown 
-                                className={`shrink-0 w-6 h-6 text-[#e9ede5] group-hover:text-[#39b7f2] transition-transform duration-300 ${
-                                    openIndex === index ? "rotate-180" : ""
-                                }`}
-                            />
-                            </span>
-                        </button>
-                        
-                        <div 
-                            className={`overflow-hidden transition-all duration-300 ${
-                                openIndex === index ? "max-h-96" : "max-h-0"
-                            }`}
-                        >
-                            <div className="px-6 pb-6 text-[#b7b9c5] leading-relaxed">
-                                {item.answer}
-                            </div>
-                        </div>
-                    </div>
+                        item={item}
+                        index={index}
+                        isOpen={openIndex === index}
+                        onToggle={toggleAccordion}
+                    />
                 ))}
             </div>
         </main>

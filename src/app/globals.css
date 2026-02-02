@@ -5,13 +5,18 @@ html {
   scroll-behavior: smooth;
 }
 
+body{
+  overflow-y: overlay;
+  background-color: #0b0b0e;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(11, 11, 14, 0.3);
+  background: transparent;
   backdrop-filter: blur(10px);
 }
 
