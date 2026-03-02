@@ -472,17 +472,16 @@ export default function Home() {
                         B<span className="font-family-grotesk-screen">o</span>ts
                     </div>
 
-                    {/* Gallery Grid */}
+                    {/* Masonry Gallery */}
                     <div
                         ref={galleryRef}
-                        className="grid grid-cols-12 gap-6 max-w-7xl mx-auto"
+                        className="masonry-gallery max-w-6xl mx-auto"
                         style={{ perspective: "1000px" }}
                     >
                         {botsData.map((bot, index) => (
                             <GalleryCard
                                 key={bot.id}
                                 bot={bot}
-                                index={index}
                                 galleryItemRef={(el) => (galleryItemsRef.current[index] = el)}
                                 hardwareAccel={hardwareAccel}
                             />

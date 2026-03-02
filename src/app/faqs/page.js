@@ -29,7 +29,7 @@ export default function Faqs() {
             }
 
             iteration += 1 / 3;
-        }, 10);
+        }, 50);
 
         return () => clearInterval(scrambleInterval);
     }, []);

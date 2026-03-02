@@ -132,3 +132,27 @@ body{
   font-family: "Px Grotesk Mono", ui-monospace, monospace;
   font-weight: 700;
 }
+
+/* Masonry Gallery Layout */
+.masonry-gallery {
+  column-count: 3;
+  column-gap: 1.5rem;
+}
+
+.masonry-gallery-item {
+  break-inside: avoid;
+  margin-bottom: 1.5rem;
+}
+
+/* Responsive Masonry */
+@media (max-width: 1024px) {
+  .masonry-gallery {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .masonry-gallery {
+    column-count: 1;
+  }
+}
