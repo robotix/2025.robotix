@@ -185,8 +185,9 @@ export default function Footer() {
                     </li>
                 </ul>
             </div>
-            <div className="p-8 text-[#838698] font-family-grotesk-mono uppercase mx-9">
-                © 2025 Technology Robotix Society, IIT Kharagpur
+            <div className="p-8 text-[#838698] font-family-grotesk-mono uppercase mx-9 flex items-center">
+                <span className="text-2xl leading-none mr-1">©</span>
+                <span>2026 Technology Robotix Society, IIT Kharagpur</span>
             </div>
         </footer>
     );

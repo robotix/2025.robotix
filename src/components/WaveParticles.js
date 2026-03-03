@@ -154,7 +154,13 @@ const Particles = () => {
 
 export default function WaveScene() {
   return (
-    <div className='w-3/4 h-3/4 absolute top-2/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none'>
+    <div className='w-5/6 h-3/4 absolute top-2/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none '>
+      {/* Left gradient overlay */}
+      <div className='absolute left-0 top-0 w-1/3 h-full pointer-events-none z-10' 
+           style={{ background: 'linear-gradient(to right, #0b0b0e, transparent)' }} />
+      {/* Right gradient overlay */}
+      <div className='absolute right-0 top-0 w-1/3 h-full pointer-events-none z-10' 
+           style={{ background: 'linear-gradient(to left, #0b0b0e, transparent)' }} />
       <Canvas
         camera={{ 
           position: [0, 0, 1500], // Zoomed out from 1000 to 1500 for wider view

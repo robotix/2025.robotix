@@ -11,7 +11,7 @@ export default function FaqAccordion({ item, index, isOpen, onToggle }) {
                 <span className="font-family-apk text-2xl text-[#e9ede5] pr-8">
                     {item.question}
                 </span>
-                <span className="border border-[#b7b9c5] group-hover:border-[#39b7f2] rounded-sm transition-colors duration-300 p-1">
+                <span className="group-hover:border-[#39b7f2] rounded-sm transition-colors duration-300 p-1">
                     <ChevronDown 
                         className={`shrink-0 w-6 h-6 text-[#e9ede5] group-hover:text-[#39b7f2] transition-transform duration-300 ${
                             isOpen ? "rotate-180" : ""
@@ -21,11 +21,11 @@ export default function FaqAccordion({ item, index, isOpen, onToggle }) {
             </button>
             
             <div 
-                className={`overflow-hidden transition-all duration-300 ${
+                className={`overflow-hidden transition-all duration-300 max-w-5xl ${
                     isOpen ? "max-h-96" : "max-h-0"
                 }`}
             >
-                <div className="px-6 pb-6 text-[#b7b9c5] leading-relaxed">
+                <div className="text-justify px-6 pb-6 text-[#b7b9c5] leading-relaxed">
                     {item.answer}
                 </div>
             </div>

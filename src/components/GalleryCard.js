@@ -4,7 +4,7 @@ export default function GalleryCard({ bot, galleryItemRef, hardwareAccel }) {
     return (
         <div
             ref={galleryItemRef}
-            className="masonry-gallery-item relative overflow-hidden rounded-sm cursor-pointer border border-[#424453] group"
+            className="masonry-gallery-item relative overflow-hidden rounded-sm cursor-pointer group"
             style={{
                 transformStyle: "preserve-3d",
                 boxShadow: "0 8px 20px rgba(0, 0, 0, 0.3)",
