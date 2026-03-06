@@ -8,6 +8,7 @@ import { teamData } from "@/data/team";
 import { alumniData } from "@/data/alumni";
 import { ArrowRight } from "lucide-react";
 import TeamMemberCard from "@/components/TeamMemberCard";
+import useScrambleText from "@/hooks/useScrambleText";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,10 +19,8 @@ export default function About() {
     const gridRef = useRef(null);
     const textRef = useRef(null);
     const [gridCells, setGridCells] = useState([]);
-    const [displayText1, setDisplayText1] = useState("");
+    const displayText1 = useScrambleText("We believe in sharing knowledge", { speed: 10 });
     const [activeTab, setActiveTab] = useState(parseInt(alumniData[0].title));
-
-    const finalText1 = "We believe in sharing knowledge";
 
     const hardwareAccel = {
         transform: "translateZ(0)",
@@ -76,32 +75,6 @@ export default function About() {
         },
         { scope: mainRef, dependencies: [gridCells] }
     );
-
-    useEffect(() => {
-        const chars = "!@#$%^&*()_+-=[]{}|;:,.<>?ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        let iter1 = 0;
-
-        const id = setInterval(() => {
-            setDisplayText1(
-                finalText1
-                    .split("")
-                    .map((ch, i) =>
-                        i < iter1
-                            ? finalText1[i]
-                            : chars[Math.floor(Math.random() * chars.length)]
-                    )
-                    .join("")
-            );
-
-            if (iter1 >= finalText1.length) {
-                clearInterval(id);
-            }
-
-            iter1 += 1 / 3;
-        }, 10);
-
-        return () => clearInterval(id);
-    }, []);
 
     useEffect(() => {
 

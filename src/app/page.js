@@ -8,6 +8,7 @@ import Image from "next/image";
 import WaveParticles from "../components/WaveParticles";
 import GalleryCard from "../components/GalleryCard";
 import { botsData } from "../data/bots";
+import useScrambleText from "@/hooks/useScrambleText";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -24,11 +25,10 @@ export default function Home() {
     const galleryItemsRef = useRef([]);
 
     const [gridCells, setGridCells] = useState([]);
-    const [displayText1, setDisplayText1] = useState("");
-    const [displayText2, setDisplayText2] = useState("");
-
-    const finalText1 = "Technology Robotix Society";
-    const finalText2 = "Where machines dare !!";
+    const [displayText1, displayText2] = useScrambleText(
+        ["Technology Robotix Society", "Where machines dare !!"],
+        { speed: 10 }
+    );
 
     const hardwareAccel = {
         transform: "translateZ(0)",
@@ -84,43 +84,7 @@ export default function Home() {
         { scope: mainRef, dependencies: [gridCells] },
     );
 
-    // --- Text Scramble & Video (Unchanged) ---
-    useEffect(() => {
-        const chars = "!@#$%^&*()_+-=[]{}|;:,.<>?ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        let iteration1 = 0;
-        let iteration2 = 0;
-
-        const scrambleInterval = setInterval(() => {
-            setDisplayText1(() =>
-                finalText1
-                    .split("")
-                    .map((char, index) => {
-                        if (index < iteration1) return finalText1[index];
-                        return chars[Math.floor(Math.random() * chars.length)];
-                    })
-                    .join(""),
-            );
-            setDisplayText2(() =>
-                finalText2
-                    .split("")
-                    .map((char, index) => {
-                        if (index < iteration2) return finalText2[index];
-                        return chars[Math.floor(Math.random() * chars.length)];
-                    })
-                    .join(""),
-            );
-            if (
-                iteration1 >= finalText1.length &&
-                iteration2 >= finalText2.length
-            ) {
-                clearInterval(scrambleInterval);
-            }
-            iteration1 += 1 / 3;
-            iteration2 += 1 / 3;
-        }, 10);
-        return () => clearInterval(scrambleInterval);
-    }, []);
-
+    // --- Video Setup ---
     useEffect(() => {
         if (videoRef.current) videoRef.current.playbackRate = 0.5;
 

@@ -1,38 +1,12 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import faq from "@/data/faq";
 import FaqAccordion from "@/components/FaqAccordion";
+import useScrambleText from "@/hooks/useScrambleText";
 
 export default function Faqs() {
-    const [displayText, setDisplayText] = useState("");
+    const displayText = useScrambleText("FAQs");
     const [openIndex, setOpenIndex] = useState(null);
-    const finalText = "FAQs";
-
-    useEffect(() => {
-        const chars = "!@#$%^&*()_+-=[]{}|;:,.<>?ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        let iteration = 0;
-
-        const scrambleInterval = setInterval(() => {
-            setDisplayText(
-                finalText
-                    .split("")
-                    .map((char, index) =>
-                        index < iteration
-                            ? finalText[index]
-                            : chars[Math.floor(Math.random() * chars.length)]
-                    )
-                    .join("")
-            );
-
-            if (iteration >= finalText.length) {
-                clearInterval(scrambleInterval);
-            }
-
-            iteration += 1 / 3;
-        }, 50);
-
-        return () => clearInterval(scrambleInterval);
-    }, []);
 
     const toggleAccordion = (index) => {
         setOpenIndex(openIndex === index ? null : index);
